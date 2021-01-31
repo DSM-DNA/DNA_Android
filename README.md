@@ -5,7 +5,7 @@
 * React Native 
 
 ## Screens
-- [ ] Signin
+- [ ] Login
 - [ ] Signup
 - [ ] TimeLine 
     * ATGC - 4 Screens
