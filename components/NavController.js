@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
+import MainNavigation from "../navigation/MainNavigation";
 
 export default () => {
-    const isLoggedIn = false;
+    const isLoggedIn = true;
     return (
         <View>
-            {isLoggedIn ? <Text>Login</Text> : <Text>Logout</Text>}
+            {isLoggedIn ? <MainNavigation/> : <Text>Logout</Text>}
         </View>
     );
 }
