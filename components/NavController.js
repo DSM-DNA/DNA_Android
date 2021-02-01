@@ -5,7 +5,7 @@ import MainNavigation from "../navigation/MainNavigation";
 export default () => {
     const isLoggedIn = true;
     return (
-        <View>
+        <View style={{flex:1}}>
             {isLoggedIn ? <MainNavigation/> : <Text>Logout</Text>}
         </View>
     );

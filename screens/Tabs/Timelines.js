@@ -1,6 +1,19 @@
 import React from "react";
-import { Text } from "react-native";
+import styled from "styled-components";
+
+const View = styled.View`
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
+
+const Text = styled.Text`
+  color: black;
+`;
 
 export default () => (
-    <Text>Timelines</Text>
+  <View>
+    <Text>TimeLines</Text>
+  </View>
 );

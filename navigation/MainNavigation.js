@@ -8,7 +8,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default () => (
     <NavigationContainer>
-        <Tab.Navigator tabBarPosition="bottom">
+        <Tab.Navigator initialRouteName="TimeLine" tabBarPosition="bottom">
             <Tab.Screen name="TimeLine" component={Timelines} />
             <Tab.Screen name="WritePost" component={WritePost} />
         </Tab.Navigator>
