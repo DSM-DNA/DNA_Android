@@ -1441,4 +1441,4 @@ const xml = `
   </svg> 
 `;
 
-export default () => <SvgXml xml={xml} width="100%" height="100%" />;
+export default () => <SvgXml xml={xml} width="85%" height="85%" />;

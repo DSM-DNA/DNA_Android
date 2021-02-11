@@ -14,7 +14,6 @@ const View = styled.View`
 
 export default ({ navigation }) => (
     <View>
-        <Text>Auth Home</Text>
         <GlobeSvg />
     </View>
 );
