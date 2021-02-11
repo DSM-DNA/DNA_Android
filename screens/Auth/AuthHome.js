@@ -1,11 +1,14 @@
 import React from "react";
+import { Image, Text } from "react-native";
 import styled from "styled-components";
+
 
 const View = styled.View``;
 
 
 export default ({ navigation }) => (
     <View>
-        <p>AuthHome</p>
+        <Text>Auth Home</Text>
+
     </View>
 );
