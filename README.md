@@ -12,4 +12,5 @@
     * Main
 - [ ] Write Post
 - [ ] Comments
-
+- [x] TabBarSetting
+- [x] SetNavigation
