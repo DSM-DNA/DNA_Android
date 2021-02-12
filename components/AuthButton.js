@@ -6,28 +6,32 @@ import { ActivityIndicator } from "react-native";
 const default_color = "#84A9AC";
 const white_color = "#ffffff";
 
-const Touchable = styled.TouchableOpacity``;
+const Touchable = styled.TouchableOpacity`
+  align-items: center;
+  margin-bottom: 32px;
+  width: 100%;
+`;
 
 const Container = styled.View`
-  background-color: ${(props) =>
-    props.bgColor ? props.bgColor : default_color};
-  padding: 10px;
-  margin: 0px 50px;
-  border-radius: 4px;
+  background-color: ${(props) => props.bgColor ? props.bgColor : default_color};
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  border-radius: 15px;
   width: 64.4%;
 `;
 
 const Text = styled.Text`
-  color: ${(props) => 
-    props.textColor ? props.textColor : white_color};
+  color: ${(props) => props.bgColor ? default_color : white_color};
   text-align: center;
-  font-weight: 600;
+  font-weight: 100;
+  font-size: 30px;
 `;
 
-const AuthButton = ({ text, onPress, loading = false, textColor = null, bgColor = null }) => (
+const AuthButton = ({ text, onPress, loading = false, bgColor = null}) => (
   <Touchable disabled={loading} onPress={onPress}>
     <Container bgColor={bgColor}>
-      {loading ? <ActivityIndicator color={"white"} /> : <Text>{text}</Text>}
+      {loading ? <ActivityIndicator color={"white"} /> : <Text bgColor={bgColor}>{text}</Text>}
     </Container>
   </Touchable>
 );

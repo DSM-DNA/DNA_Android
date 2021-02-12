@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 export default () => (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="AuthHome">
+        <Stack.Navigator initialRouteName="AuthHome" headerMode= "none">
             <Stack.Screen name="AuthHome" component={AuthHome} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
