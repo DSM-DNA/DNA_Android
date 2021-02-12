@@ -3,6 +3,8 @@ import { Text } from "react-native";
 import styled from "styled-components";
 import GlobeSvg from "../../assets/images/globe.js";
 import AuthButton from "../../components/AuthButton.js";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const View = styled.View`
   flex: 1;
@@ -34,7 +36,7 @@ export default ({ navigation }) => (
       <ButtonContainer>
         <AuthButton
           text={"Sign In"}
-          onPress={() => navigation.navigate("Signup")}
+          onPress={() => navigation.navigate("Login")}
         />
         <AuthButton
           text={"Sign Up"}
