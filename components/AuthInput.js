@@ -20,25 +20,27 @@ const AuthInput = ({
   autoCapitalize = "none",
   returnKeyType = "done",
   fontSize = "24px",
+  onChange,
   onSubmitEditing = () => null,
   autoCorrect = true,
 }) => (
-  <TextInput
-    secureTextEntry={secureTextEntry}
-    keyboardType={keyboardType}
-    placeholder={placeholder}
-    autoCapitalize={autoCapitalize}
-    returnKeyType={returnKeyType}
-    onSubmitEditing={onSubmitEditing}
-    autoCorrect={autoCorrect}
-    value={value}
-    fontSize={fontSize}
-  />
+    <TextInput
+      secureTextEntry={secureTextEntry}
+      onChangeText={onChange}
+      keyboardType={keyboardType}
+      placeholder={placeholder}
+      autoCapitalize={autoCapitalize}
+      returnKeyType={returnKeyType}
+      onSubmitEditing={onSubmitEditing}
+      autoCorrect={autoCorrect}
+      value={value}
+      fontSize={fontSize}
+    />
 );
 
 AuthInput.propTypes = {
-  secureTextEntry: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   keyboardType: PropTypes.oneOf([
     "default",
     "number-pad",
@@ -48,6 +50,7 @@ AuthInput.propTypes = {
     "phone-pad",
   ]),
   autoCapitalize: PropTypes.oneOf(["none", "sentences", "words", "characters"]),
+  onChange: PropTypes.func.isRequired,
   returnKeyType: PropTypes.oneOf(["done", "go", "next", "sear", "send"]),
   onSubmitEditing: PropTypes.func,
   autoCorrect: PropTypes.bool,

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
+import useInput from "../../hooks/useInput";
 
 const View = styled.View`
   background-color: #204051;
@@ -16,10 +17,6 @@ const _View = styled.View`
   justify-content: center;
   align-items: center;
   flex: 60;
-`;
-
-const Text = styled.Text`
-  color: black;
 `;
 
 const InputArea = styled.View`
@@ -40,23 +37,15 @@ const ButtonArea = styled.View`
   margin-bottom: 20%;
 `;
 
-export default () => {
-  let initvalue = "";
-  const [email, setEmail] = useState(initvalue);
-  const [password, setPassword] = useState(initvalue);
-
-  const changeEmail = (text) => {
-    console.log("changing email");
-    setEmail(text);
-  };
-
-  const changePassword = (text) => {
-    setPassword(text);
-  };
+export default ({navigation}) => {
+  const emailInput = useInput("");
+  const passwordInput = useInput("");
 
   const handleLogin = async () => {
+    const { value } = emailInput;
+    console.log(typeof(value), value);
     console.log("Login!");
-    console.log(`eMail : ${email} PW : ${password}`);
+    
   }; // Login Request
 
   return (
@@ -68,22 +57,20 @@ export default () => {
         <InputArea>
           <EachInput>
             <AuthInput
+              {...emailInput}
               placeholder="e-mail"
-              value={email}
               keyboardType="email-address"
-              returnKeyType="send"
-              onSubmitEditing={changeEmail}
+              onSubmitEditing={handleLogin}
               autoCorrect={false}
             />
           </EachInput>
           <EachInput>
             <AuthInput
+              {...passwordInput}
               secureTextEntry={true}
               placeholder="password"
-              value={password}
               keyboardType="email-address"
-              returnKeyType="done"
-              onSubmitEditing={changePassword}
+              onSubmitEditing={handleLogin}
               autoCorrect={false}
             />
           </EachInput>
