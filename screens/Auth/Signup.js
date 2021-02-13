@@ -18,8 +18,9 @@ const _View = styled.View`
   flex: 60;
 `;
 
-const Text = styled.Text`
-  color: black;
+const ErrText = styled.Text`
+  color: red;
+  font-size: 13px;
 `;
 
 const InputArea = styled.View`
@@ -41,16 +42,41 @@ const ButtonArea = styled.View`
 `;
 
 export default () => {
+  const [name, setName] = useState(name);
   const [email, setEmail] = useState(email);
   const [password, setPassword] = useState(password);
+  const [pw, setPw] = useState(pw);
+  const [comment, setComment] = useState("");
+
+  const changeName = (text) => {
+    console.log("changing name");
+    setName(text);
+  }
 
   const changeEmail = (text) => {
+    console.log("changing email");
     setEmail(text);
   };
 
   const changePassword = (text) => {
+    console.log("changing password");
     setPassword(text);
   };
+  
+  const changeComment = () => {
+    console.log("function is run!");
+    if(password !== pw){
+      setComment("※ 비밀번호를 확인해주세요");
+    }else{
+      setComment("");
+    }
+  }
+  const changePw = (text) => {
+    console.log(text);
+    setPw(text);
+    changeComment();
+  }
+
 
   const handleLogin = async () => {}; // Login Request
 
@@ -64,10 +90,10 @@ export default () => {
         <EachInput>
             <AuthInput
               placeholder="이름을 입력하세요"
-              value={email}
-              keyboardType="email-address"
+              value={name}
+              keyboardType="default"
               returnKeyType="send"
-              onSubmitEditing={changeEmail}
+              onSubmitEditing={changeName}
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
@@ -102,13 +128,14 @@ export default () => {
             <AuthInput
               secureTextEntry={true}
               placeholder="password을 확인하세요"
-              value={password}
+              value={pw}
               keyboardType="email-address"
               returnKeyType="done"
-              onSubmitEditing={changePassword}
+              onSubmitEditing={changePw}
               autoCorrect={false}
               fontSize={"20px"}
             />
+            <ErrText>{comment}</ErrText>
           </EachInput>
         </InputArea>
         <ButtonArea>

@@ -41,10 +41,12 @@ const ButtonArea = styled.View`
 `;
 
 export default () => {
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
+  let initvalue = "";
+  const [email, setEmail] = useState(initvalue);
+  const [password, setPassword] = useState(initvalue);
 
   const changeEmail = (text) => {
+    console.log("changing email");
     setEmail(text);
   };
 
@@ -52,7 +54,10 @@ export default () => {
     setPassword(text);
   };
 
-  const handleLogin = async () => {}; // Login Request
+  const handleLogin = async () => {
+    console.log("Login!");
+    console.log(`eMail : ${email} PW : ${password}`);
+  }; // Login Request
 
   return (
     <>
