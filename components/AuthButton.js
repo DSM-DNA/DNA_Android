@@ -16,8 +16,8 @@ const Container = styled.View`
   background-color: ${(props) => props.bgColor ? props.bgColor : default_color};
   align-items: center;
   justify-content: center;
-  height: 65px;
-  border-radius: 15px;
+  height: 60px;
+  border-radius: 25px;
   width: 64.4%;
 `;
 

@@ -1,47 +1,46 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import constants from "../constants";
-
-const Container = styled.View`
-  margin-bottom: 40px;
-  margin-bottom: 40px;
-`;
 
 const TextInput = styled.TextInput`
   width: 64.4%;
+  height: 50px;
   padding: 10px;
-  background-color: "#f5f5f5";
-  border-radius: 15px;
+  font-size: ${(props) => props.fontSize};
+  font-weight: 100;
+  background-color: #f5f5f5;
+  border-radius: 25px;
 `;
 
 const AuthInput = ({
+  secureTextEntry,
   placeholder,
   value,
   keyboardType = "default",
   autoCapitalize = "none",
   returnKeyType = "done",
-  onChange,
+  fontSize = "24px",
+  marginBottom = "40px",
   onSubmitEditing = () => null,
-  autoCorrect = true
+  autoCorrect = true,
 }) => (
-  <Container>
-    <TextInput
-      onChangeText={onChange}
-      keyboardType={keyboardType}
-      placeholder={placeholder}
-      autoCapitalize={autoCapitalize}
-      returnKeyType={returnKeyType}
-      onSubmitEditing={onSubmitEditing}
-      autoCorrect={autoCorrect}
-      value={value}
-    />
-  </Container>
+  <TextInput
+    secureTextEntry={secureTextEntry}
+    keyboardType={keyboardType}
+    placeholder={placeholder}
+    autoCapitalize={autoCapitalize}
+    returnKeyType={returnKeyType}
+    onSubmitEditing={onSubmitEditing}
+    autoCorrect={autoCorrect}
+    value={value}
+    fontSize={fontSize}
+    marginBottom={marginBottom}
+  />
 );
 
 AuthInput.propTypes = {
+  secureTextEntry: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   keyboardType: PropTypes.oneOf([
     "default",
     "number-pad",
@@ -51,10 +50,9 @@ AuthInput.propTypes = {
     "phone-pad",
   ]),
   autoCapitalize: PropTypes.oneOf(["none", "sentences", "words", "characters"]),
-  onChange: PropTypes.func.isRequired,
   returnKeyType: PropTypes.oneOf(["done", "go", "next", "sear", "send"]),
   onSubmitEditing: PropTypes.func,
-  autoCorrect: PropTypes.bool
+  autoCorrect: PropTypes.bool,
 };
 
 export default AuthInput;

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
+import AuthButton from "../../components/AuthButton";
+import AuthInput from "../../components/AuthInput";
 
 const View = styled.View`
   background-color: #204051;
@@ -20,25 +22,69 @@ const Text = styled.Text`
   color: black;
 `;
 
+const InputArea = styled.View`
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 8%;
+`;
+
+const EachInput = styled.View`
+  width: 100%;
+`;
+
 const ButtonArea = styled.View`
-  margin-top: 7%;
-  width:100%;
+  width: 100%;
+  margin-bottom: 20%;
 `;
 
-const EachButton = styled.View`
-  padding-top: 5.5%;
-  width:100%;
-`;
+export default () => {
+  const [email, setEmail] = useState(email);
+  const [password, setPassword] = useState(password);
 
-export default () => (
-  <>
-    <View>
-      <AuthBackground/>
-    </View>
-    <_View>
-      <ButtonArea>
+  const changeEmail = (text) => {
+    setEmail(text);
+  };
 
-      </ButtonArea>
-    </_View>
-  </>
-);
+  const changePassword = (text) => {
+    setPassword(text);
+  };
+
+  const handleLogin = async () => {}; // Login Request
+
+  return (
+    <>
+      <View>
+        <AuthBackground />
+      </View>
+      <_View>
+        <InputArea>
+          <EachInput>
+            <AuthInput
+              placeholder="e-mail"
+              value={email}
+              keyboardType="email-address"
+              returnKeyType="send"
+              onSubmitEditing={changeEmail}
+              autoCorrect={false}
+            />
+          </EachInput>
+          <EachInput>
+            <AuthInput
+              secureTextEntry={true}
+              placeholder="password"
+              value={password}
+              keyboardType="email-address"
+              returnKeyType="done"
+              onSubmitEditing={changePassword}
+              autoCorrect={false}
+            />
+          </EachInput>
+        </InputArea>
+        <ButtonArea>
+          <AuthButton text="Sign In" onPress={handleLogin} />
+        </ButtonArea>
+      </_View>
+    </>
+  );
+};

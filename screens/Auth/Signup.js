@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
+import AuthButton from "../../components/AuthButton";
+import AuthInput from "../../components/AuthInput";
 
 const View = styled.View`
   background-color: #204051;
@@ -20,13 +22,98 @@ const Text = styled.Text`
   color: black;
 `;
 
-export default () => (
-  <>
-    <View>
-      <AuthBackground/>
-    </View>
-    <_View>
-      <Text>Sign Up</Text>
-    </_View>
-  </>
-);
+const InputArea = styled.View`
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 8%;
+`;
+
+const EachInput = styled.View`
+  width: 100%;
+`;
+
+const ButtonArea = styled.View`
+  width: 100%;
+  margin-bottom: 20%;
+`;
+
+export default () => {
+  const [email, setEmail] = useState(email);
+  const [password, setPassword] = useState(password);
+
+  const changeEmail = (text) => {
+    setEmail(text);
+  };
+
+  const changePassword = (text) => {
+    setPassword(text);
+  };
+
+  const handleLogin = async () => {}; // Login Request
+
+  return (
+    <>
+      <View>
+        <AuthBackground />
+      </View>
+      <_View>
+        <InputArea>
+        <EachInput>
+            <AuthInput
+              placeholder="이름을 입력하세요"
+              value={email}
+              keyboardType="email-address"
+              returnKeyType="send"
+              onSubmitEditing={changeEmail}
+              autoCorrect={false}
+              fontSize={"20px"}
+              marginBottom={"20px"}
+            />
+          </EachInput>
+          <EachInput>
+            <AuthInput
+              placeholder="e-mail을 입력하세요"
+              value={email}
+              keyboardType="email-address"
+              returnKeyType="send"
+              onSubmitEditing={changeEmail}
+              autoCorrect={false}
+              fontSize={"20px"}
+              marginBottom={"20px"}
+            />
+          </EachInput>
+          <EachInput>
+            <AuthInput
+              secureTextEntry={true}
+              placeholder="password을 입력하세요"
+              value={password}
+              keyboardType="email-address"
+              returnKeyType="done"
+              onSubmitEditing={changePassword}
+              autoCorrect={false}
+              fontSize={"20px"}
+              marginBottom={"20px"}
+            />
+          </EachInput>
+          <EachInput>
+            <AuthInput
+              secureTextEntry={true}
+              placeholder="password을 확인하세요"
+              value={password}
+              keyboardType="email-address"
+              returnKeyType="done"
+              onSubmitEditing={changePassword}
+              autoCorrect={false}
+              fontSize={"20px"}
+              marginBottom={"20px"}
+            />
+          </EachInput>
+        </InputArea>
+        <ButtonArea>
+          <AuthButton text="Sign In" onPress={handleLogin} />
+        </ButtonArea>
+      </_View>
+    </>
+  );
+};
