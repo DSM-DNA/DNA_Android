@@ -6,14 +6,14 @@ const View = styled.View`
   background-color: #204051;
   justify-content: flex-end;
   align-items: center;
-  flex: 45;
+  flex: 40;
 `;
 
 const _View = styled.View`
   background-color: #ffffff;
   justify-content: center;
   align-items: center;
-  flex: 55;
+  flex: 60;
 `;
 
 const Text = styled.Text`
