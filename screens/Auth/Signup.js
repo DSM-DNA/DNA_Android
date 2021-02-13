@@ -30,12 +30,14 @@ const InputArea = styled.View`
 `;
 
 const EachInput = styled.View`
+  align-items: center;
+  margin-bottom: 25px;
   width: 100%;
 `;
 
 const ButtonArea = styled.View`
   width: 100%;
-  margin-bottom: 20%;
+  margin-bottom: 15%;
 `;
 
 export default () => {
@@ -106,7 +108,6 @@ export default () => {
               onSubmitEditing={changePassword}
               autoCorrect={false}
               fontSize={"20px"}
-              marginBottom={"20px"}
             />
           </EachInput>
         </InputArea>

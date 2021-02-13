@@ -20,7 +20,6 @@ const AuthInput = ({
   autoCapitalize = "none",
   returnKeyType = "done",
   fontSize = "24px",
-  marginBottom = "40px",
   onSubmitEditing = () => null,
   autoCorrect = true,
 }) => (
@@ -34,7 +33,6 @@ const AuthInput = ({
     autoCorrect={autoCorrect}
     value={value}
     fontSize={fontSize}
-    marginBottom={marginBottom}
   />
 );
 

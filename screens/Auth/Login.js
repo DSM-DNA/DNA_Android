@@ -29,8 +29,10 @@ const InputArea = styled.View`
   padding-bottom: 8%;
 `;
 
-const EachInput = styled.View`
+const EachInput = styled.View`  
   width: 100%;
+  margin-bottom: 40px;
+  align-items: center;
 `;
 
 const ButtonArea = styled.View`
