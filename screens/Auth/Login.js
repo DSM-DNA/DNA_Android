@@ -26,7 +26,7 @@ export default () => (
       <AuthBackground/>
     </View>
     <_View>
-      <Text>Hello</Text>
+      <Text>Login</Text>
     </_View>
   </>
 );
