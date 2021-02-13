@@ -20,13 +20,25 @@ const Text = styled.Text`
   color: black;
 `;
 
+const ButtonArea = styled.View`
+  margin-top: 7%;
+  width:100%;
+`;
+
+const EachButton = styled.View`
+  padding-top: 5.5%;
+  width:100%;
+`;
+
 export default () => (
   <>
     <View>
       <AuthBackground/>
     </View>
     <_View>
-      <Text>Login</Text>
+      <ButtonArea>
+
+      </ButtonArea>
     </_View>
   </>
 );
