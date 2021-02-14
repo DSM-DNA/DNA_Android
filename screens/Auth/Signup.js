@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCallback } from "react";
+import { Alert } from "react-native";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
@@ -84,7 +85,16 @@ export default () => {
     }
   };
 
-  const handleSignup = async () => {}; // Login Request
+  const handleSignup = async () => {
+    const { value : name} = nameInput;
+    const { value : email } = emailInput;
+    const { value: password } = passwordInput;
+    if(checkflag !== "can"){
+      Alert.alert("회원정보를 입력해주세요");
+    } else {
+      console.log(`name : ${name}\nemail : ${email}\npassword : ${email}`);
+    }
+  }; // Login Request
 
   return (
     <>
