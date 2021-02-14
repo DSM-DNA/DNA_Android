@@ -20,15 +20,15 @@ const AuthInput = ({
   autoCapitalize = "none",
   returnKeyType = "done",
   fontSize = "20px",
+  onChangeText,
   onChange,
-  _onChange,
   onSubmitEditing = () => null,
   autoCorrect = true,
 }) => (
     <TextInput
       secureTextEntry={secureTextEntry}
-      onChangeText={onChange}
-      onChange={_onChange}
+      onChangeText={onChangeText}
+      onChange={onChange}
       keyboardType={keyboardType}
       placeholder={placeholder}
       autoCapitalize={autoCapitalize}
@@ -53,8 +53,8 @@ AuthInput.propTypes = {
     "visible-password"
   ]),
   autoCapitalize: PropTypes.oneOf(["none", "sentences", "words", "characters"]),
+  onChangeText: PropTypes.func,
   onChange: PropTypes.func,
-  _onChange: PropTypes.func,
   returnKeyType: PropTypes.oneOf(["done", "go", "next", "sear", "send"]),
   onSubmitEditing: PropTypes.func,
   autoCorrect: PropTypes.bool,

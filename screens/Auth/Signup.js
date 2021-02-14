@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCallback } from "react";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
@@ -49,20 +50,22 @@ export default () => {
   const passwordInput = useInput("");
   const confirmPwInput = useInput("");
 
-  const confirmEmail = () => {
-    console.log("confirming...");
-  }
+  const confirmEmail = (event) => {
+    console.log(event.nativeEvent);
+  };
 
-  const changeComment = () => {
-    const { value : password } = passwordInput;
-    const { value : pw } = confirmPwInput;
-    console.log("function is run!");
-    if(password !== pw){
+  const confirmPw = (event) => {
+    const { value: password } = passwordInput;
+    //const { value : pw } = confirmPwInput;
+    let { text } = event.nativeEvent;
+    console.log(text);
+    console.log(event.nativeEvent);
+    if (password !== text) {
       setComment("※ 비밀번호를 확인해주세요");
-    }else{
+    } else {
       setComment("");
     }
-  }
+  };
 
   const handleSignup = async () => {}; // Login Request
 
@@ -73,7 +76,7 @@ export default () => {
       </View>
       <_View>
         <InputArea>
-        <EachInput>
+          <EachInput>
             <AuthInput
               {...nameInput}
               placeholder="이름을 입력하세요"
@@ -112,7 +115,7 @@ export default () => {
               placeholder="password을 확인하세요"
               keyboardType="default"
               returnKeyType="done"
-              onChange={changeComment}
+              onChange={(event) => confirmPw(event)}
               autoCorrect={false}
               fontSize={"20px"}
             />
