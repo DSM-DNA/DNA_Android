@@ -44,26 +44,43 @@ const ButtonArea = styled.View`
 `;
 
 export default () => {
-  const [comment, setComment] = useState("");
+  const [checkflag, setCheckflag] = useState("");
+  const [pwresult, setPwresult] = useState("");
+  const [emresult, setEmresult] = useState("");
   const nameInput = useInput("");
   const emailInput = useInput("");
   const passwordInput = useInput("");
   const confirmPwInput = useInput("");
 
   const confirmEmail = (event) => {
-    console.log(event.nativeEvent);
+    const testEmail = "kokt0203@naver.com";
+
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let { text } = event.nativeEvent;
+    if (text === ""){
+      setEmresult("");
+    } else if (!text.includes("@") || !text.includes(".") || !emailRegex.test(text)) {
+      setEmresult("※ 이메일 형식이 올바른지 확인해주세요");
+    } else if (text === testEmail) {
+      setEmresult("※ 이미 사용중인 이메일입니다.");
+    } else {
+      setEmresult("");
+      setCheckflag("check email");
+    }
   };
 
   const confirmPw = (event) => {
     const { value: password } = passwordInput;
-    //const { value : pw } = confirmPwInput;
     let { text } = event.nativeEvent;
     console.log(text);
     console.log(event.nativeEvent);
     if (password !== text) {
-      setComment("※ 비밀번호를 확인해주세요");
+      setPwresult("※ 비밀번호를 확인해주세요");
     } else {
-      setComment("");
+      setPwresult("");
+      if(checkflag === "check email"){
+        setCheckflag("can");
+      }
     }
   };
 
@@ -91,11 +108,12 @@ export default () => {
               {...emailInput}
               placeholder="e-mail을 입력하세요"
               keyboardType="email-address"
-              onChange={confirmEmail}
+              onChange={(event) => confirmEmail(event)}
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
             />
+            <ErrText>{emresult}</ErrText>
           </EachInput>
           <EachInput>
             <AuthInput
@@ -119,11 +137,11 @@ export default () => {
               autoCorrect={false}
               fontSize={"20px"}
             />
-            <ErrText>{comment}</ErrText>
+            <ErrText>{pwresult}</ErrText>
           </EachInput>
         </InputArea>
         <ButtonArea>
-          <AuthButton text="Sign In" onPress={handleSignup} />
+          <AuthButton text="Sign Up" onPress={handleSignup} />
         </ButtonArea>
       </_View>
     </>
