@@ -42,9 +42,9 @@ export default ({navigation}) => {
   const passwordInput = useInput("");
 
   const handleLogin = async () => {
-    const { value } = emailInput;
-    console.log(typeof(value), value);
-    console.log("Login!");
+    const { value : email } = emailInput;
+    const { value : password} = passwordInput;
+    console.log(email, password);
     
   }; // Login Request
 
@@ -60,7 +60,6 @@ export default ({navigation}) => {
               {...emailInput}
               placeholder="e-mail"
               keyboardType="email-address"
-              onSubmitEditing={handleLogin}
               autoCorrect={false}
             />
           </EachInput>
@@ -69,8 +68,7 @@ export default ({navigation}) => {
               {...passwordInput}
               secureTextEntry={true}
               placeholder="password"
-              keyboardType="email-address"
-              onSubmitEditing={handleLogin}
+              keyboardType="default"
               autoCorrect={false}
             />
           </EachInput>

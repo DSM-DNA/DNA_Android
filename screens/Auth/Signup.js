@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
+import useInput from "../../hooks/useInput";
 
 const View = styled.View`
   background-color: #204051;
@@ -42,28 +43,19 @@ const ButtonArea = styled.View`
 `;
 
 export default () => {
-  const [name, setName] = useState(name);
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
-  const [pw, setPw] = useState(pw);
   const [comment, setComment] = useState("");
+  const nameInput = useInput("");
+  const emailInput = useInput("");
+  const passwordInput = useInput("");
+  const confirmPwInput = useInput("");
 
-  const changeName = (text) => {
-    console.log("changing name");
-    setName(text);
+  const confirmEmail = () => {
+    console.log("confirming...");
   }
 
-  const changeEmail = (text) => {
-    console.log("changing email");
-    setEmail(text);
-  };
-
-  const changePassword = (text) => {
-    console.log("changing password");
-    setPassword(text);
-  };
-  
   const changeComment = () => {
+    const { value : password } = passwordInput;
+    const { value : pw } = confirmPwInput;
     console.log("function is run!");
     if(password !== pw){
       setComment("※ 비밀번호를 확인해주세요");
@@ -71,14 +63,8 @@ export default () => {
       setComment("");
     }
   }
-  const changePw = (text) => {
-    console.log(text);
-    setPw(text);
-    changeComment();
-  }
 
-
-  const handleLogin = async () => {}; // Login Request
+  const handleSignup = async () => {}; // Login Request
 
   return (
     <>
@@ -89,11 +75,9 @@ export default () => {
         <InputArea>
         <EachInput>
             <AuthInput
+              {...nameInput}
               placeholder="이름을 입력하세요"
-              value={name}
               keyboardType="default"
-              returnKeyType="send"
-              onSubmitEditing={changeName}
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
@@ -101,11 +85,10 @@ export default () => {
           </EachInput>
           <EachInput>
             <AuthInput
+              {...emailInput}
               placeholder="e-mail을 입력하세요"
-              value={email}
               keyboardType="email-address"
-              returnKeyType="send"
-              onSubmitEditing={changeEmail}
+              onChange={confirmEmail}
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
@@ -113,12 +96,10 @@ export default () => {
           </EachInput>
           <EachInput>
             <AuthInput
+              {...passwordInput}
               secureTextEntry={true}
               placeholder="password을 입력하세요"
-              value={password}
-              keyboardType="email-address"
-              returnKeyType="done"
-              onSubmitEditing={changePassword}
+              keyboardType="default"
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
@@ -126,12 +107,12 @@ export default () => {
           </EachInput>
           <EachInput>
             <AuthInput
+              {...confirmPwInput}
               secureTextEntry={true}
               placeholder="password을 확인하세요"
-              value={pw}
-              keyboardType="email-address"
+              keyboardType="default"
               returnKeyType="done"
-              onSubmitEditing={changePw}
+              onChange={changeComment}
               autoCorrect={false}
               fontSize={"20px"}
             />
@@ -139,7 +120,7 @@ export default () => {
           </EachInput>
         </InputArea>
         <ButtonArea>
-          <AuthButton text="Sign In" onPress={handleLogin} />
+          <AuthButton text="Sign In" onPress={handleSignup} />
         </ButtonArea>
       </_View>
     </>

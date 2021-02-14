@@ -25,7 +25,7 @@ const Text = styled.Text`
   color: ${(props) => props.bgColor ? default_color : white_color};
   text-align: center;
   font-weight: 100;
-  font-size: 30px;
+  font-size: 20px;
 `;
 
 const AuthButton = ({ text, onPress, loading = false, bgColor = null}) => (

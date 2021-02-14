@@ -19,14 +19,16 @@ const AuthInput = ({
   keyboardType = "default",
   autoCapitalize = "none",
   returnKeyType = "done",
-  fontSize = "24px",
+  fontSize = "20px",
   onChange,
+  _onChange,
   onSubmitEditing = () => null,
   autoCorrect = true,
 }) => (
     <TextInput
       secureTextEntry={secureTextEntry}
       onChangeText={onChange}
+      onChange={_onChange}
       keyboardType={keyboardType}
       placeholder={placeholder}
       autoCapitalize={autoCapitalize}
@@ -48,9 +50,11 @@ AuthInput.propTypes = {
     "numeric",
     "email-address",
     "phone-pad",
+    "visible-password"
   ]),
   autoCapitalize: PropTypes.oneOf(["none", "sentences", "words", "characters"]),
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  _onChange: PropTypes.func,
   returnKeyType: PropTypes.oneOf(["done", "go", "next", "sear", "send"]),
   onSubmitEditing: PropTypes.func,
   autoCorrect: PropTypes.bool,
