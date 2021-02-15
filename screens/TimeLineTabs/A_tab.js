@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import A from "../../assets/Header/A";
+import AHeader from "../../assets/Header/AHeader";
 
 const View = styled.View`
-  background-color: white;
-  align-items: center;
-  flex: 1;
+    flex: 1;
+    background-color: white;
 `;
 
 const Header = styled.View`
-    align-items: center;
-    justify-content: flex-start;
     width: 100%;
     height: 100%;
 `;
@@ -20,12 +17,8 @@ const Text = styled.Text`
 `;
 
 export default () => (
-  <>
-  <Header>
-    <A/>
-  </Header>
   <View>
-    <Text>Adenine</Text>
+    <AHeader/>
+    
   </View>
-  </>
 );
