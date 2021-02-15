@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Adenine from "../../assets/images/Adenine";
 import Category from "../../assets/images/Category";
+import Cytosine from "../../assets/images/Cytosine";
+import Guanine from "../../assets/images/Guanine";
 import MainHeader from "../../assets/images/MainHeader";
 import MainNotice from "../../assets/images/MainNotice";
 import Thymine from "../../assets/images/Thymine";
@@ -36,13 +38,35 @@ const Grid = styled.View`
   flex-direction: row;
   width: 100%;
   height: 100%;
+  align-items: stretch;
+  justify-content: center;
+`;
+
+const Bottom = styled.View`
+  background-color: white;
+  flex: 0.5;
+  width: 100%;
+  height: 100%;
 `;
 
 const EachButton = styled.View`
+  background-color: white;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   height: 100%;
 `;
 
+const Container = styled.View`
+  background-color: #CAE8D5;
+  width: 190px;
+  height: 118px;
+  borderRadius: 16px;
+  padding-bottom: 30px;
+  padding-left: 7px;
+  elevation: 1;
+`;
+//width: 206px height 190px;
 const Text = styled.Text`
   color: black;
 `;
@@ -65,13 +89,22 @@ export default () => (
       <Adenine />
     </EachButton>
     <EachButton>
-      <Thymine />
+      <Container>
+        <Thymine />
+      </Container>
     </EachButton>
   </Grid>
   <Grid>
-    <Text>Button                                  </Text>
-    <Text>Button                                  </Text>
+    <EachButton>
+      <Guanine />
+    </EachButton>
+    <EachButton>
+      <Cytosine />
+    </EachButton>
   </Grid>
+  <Bottom>
+
+  </Bottom>
   </>
 
 );
