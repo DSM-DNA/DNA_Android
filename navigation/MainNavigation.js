@@ -7,6 +7,10 @@ import Logout from "../screens/Auth/Logout";
 import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Timelines from "../screens/Tabs/Timelines";
+import A_tab from "../screens/TimeLineTabs/A_tab";
+import T_tab from "../screens/TimeLineTabs/T_tab";
+import G_tab from "../screens/TimeLineTabs/G_tab";
+import C_tab from "../screens/TimeLineTabs/C_tab";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -15,7 +19,10 @@ const HomeTabs = () => {
   return (
     <Stack.Navigator initialRouteName="TimeLine" headerMode="none">
       <Stack.Screen name="Home" component={Timelines} />
-      
+      <Stack.Screen name="A_tab" component={A_tab} />
+      <Stack.Screen name="T_tab" component={T_tab} />
+      <Stack.Screen name="G_tab" component={G_tab} />
+      <Stack.Screen name="C_tab" component={C_tab} />
     </Stack.Navigator>
   );
 };

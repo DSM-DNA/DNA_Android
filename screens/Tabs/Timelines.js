@@ -89,24 +89,24 @@ export default ({navigation}) => (
   </View>
   <Grid>
     <EachButton>
-      <Container bgColor={white} onPress={() => console.log("Adenine")}>
+      <Container bgColor={white} onPress={() => navigation.navigate("A_tab")}>
         <Adenine />
       </Container>
     </EachButton>
     <EachButton>
-      <Container bgColor={green}>
+      <Container bgColor={green} onPress={() => navigation.navigate("T_tab")}>
         <Thymine />
       </Container>
     </EachButton>
   </Grid>
   <Grid>
     <EachButton>
-      <Container bgColor={green}>
+      <Container bgColor={green} onPress={() => navigation.navigate("G_tab")}>
         <Guanine />
       </Container>
     </EachButton>
     <EachButton>
-      <Container bgColor={white}>
+      <Container bgColor={white} onPress={() => navigation.navigate("C_tab")}>
         <Cytosine />
       </Container>
     </EachButton>
