@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Category from "../../assets/images/Category";
 import MainHeader from "../../assets/images/MainHeader";
 import MainNotice from "../../assets/images/MainNotice";
 
@@ -21,8 +22,11 @@ const Notice = styled.View`
   height: 20%;
 `;
 
-const Category = styled.View`
-  width: 100%;
+const MidCategory = styled.View`
+  margin-top: 10%;
+  padding-left: 8%;
+  width: 37%;
+  height: 5%;
 `;
 
 const Text = styled.Text`
@@ -37,5 +41,8 @@ export default () => (
     <Notice>
       <MainNotice />
     </Notice>
+    <MidCategory>
+      <Category />
+    </MidCategory>
   </View>
 );
