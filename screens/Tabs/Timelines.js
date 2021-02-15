@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import MainHeader from "../../assets/images/MainHeader";
 
 const View = styled.View`
   background-color: white;
@@ -8,12 +9,18 @@ const View = styled.View`
   flex: 1;
 `;
 
+const Header = styled.View`
+  width: 100%;
+`;
+
 const Text = styled.Text`
   color: black;
 `;
 
 export default () => (
   <View>
-    <Text>TimeLines</Text>
+    <Header>
+      <MainHeader />
+    </Header>
   </View>
 );
