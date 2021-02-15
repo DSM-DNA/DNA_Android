@@ -57,8 +57,11 @@ const EachButton = styled.View`
   height: 100%;
 `;
 
+const green = "#CAE8D5";
+const white = "#ffffff";
+
 const Container = styled.View`
-  background-color: #CAE8D5;
+  background-color: ${props => props.bgColor};
   width: 190px;
   height: 118px;
   borderRadius: 16px;
@@ -86,20 +89,26 @@ export default () => (
   </View>
   <Grid>
     <EachButton>
-      <Adenine />
+      <Container bgColor={white}>
+        <Adenine />
+      </Container>
     </EachButton>
     <EachButton>
-      <Container>
+      <Container bgColor={green}>
         <Thymine />
       </Container>
     </EachButton>
   </Grid>
   <Grid>
     <EachButton>
-      <Guanine />
+      <Container bgColor={green}>
+        <Guanine />
+      </Container>
     </EachButton>
     <EachButton>
-      <Cytosine />
+      <Container bgColor={white}>
+        <Cytosine />
+      </Container>
     </EachButton>
   </Grid>
   <Bottom>
