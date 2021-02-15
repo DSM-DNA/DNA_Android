@@ -60,21 +60,21 @@ const EachButton = styled.View`
 const green = "#CAE8D5";
 const white = "#ffffff";
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   background-color: ${props => props.bgColor};
   width: 190px;
   height: 118px;
   borderRadius: 16px;
   padding-bottom: 30px;
   padding-left: 7px;
-  elevation: 1;
+  elevation: 3;
 `;
 //width: 206px height 190px;
 const Text = styled.Text`
   color: black;
 `;
 
-export default () => (
+export default ({navigation}) => (
   <>
   <View>
     <Header>
@@ -89,7 +89,7 @@ export default () => (
   </View>
   <Grid>
     <EachButton>
-      <Container bgColor={white}>
+      <Container bgColor={white} onPress={() => console.log("Adenine")}>
         <Adenine />
       </Container>
     </EachButton>
