@@ -21,6 +21,10 @@ const Notice = styled.View`
   height: 20%;
 `;
 
+const Category = styled.View`
+  width: 100%;
+`;
+
 const Text = styled.Text`
   color: black;
 `;
