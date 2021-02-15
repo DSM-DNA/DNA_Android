@@ -2,11 +2,23 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import Timelines from "../screens/Tabs/Timelines";
 import WritePost from "../screens/Tabs/WritePost";
 import Logout from "../screens/Auth/Logout";
+import { View } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Timelines from "../screens/Tabs/Timelines";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const HomeTabs = () => {
+  return (
+    <Stack.Navigator initialRouteName="TimeLine" headerMode="none">
+      <Stack.Screen name="Home" component={Timelines} />
+      
+    </Stack.Navigator>
+  );
+};
 
 export default () => (
   <NavigationContainer>
@@ -36,7 +48,7 @@ export default () => (
       />
       <Tab.Screen
         name="Home"
-        component={Timelines}
+        component={HomeTabs}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
