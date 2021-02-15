@@ -21,7 +21,7 @@ const xml = `
         <path id="패스_1114" data-name="패스 1114" d="M9.556,0A9.556,9.556,0,1,1,0,9.556,9.556,9.556,0,0,1,9.556,0Z" transform="translate(175.262 115.214)" fill="#f2f2f2"/>
         <circle id="타원_727" data-name="타원 727" cx="9.5" cy="9.5" r="9.5" transform="translate(175 115)" fill="url(#pattern)"/>
       </g>
-      <text id="잠수탄_친구_찾기" data-name="잠수탄 친구 찾기" transform="translate(196 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="-53.55" y="14">잠수탄 친구 찾기</tspan></text>
+      <text id="잠수탄_친구_찾기" data-name="잠수탄 친구 찾기" transform="translate(196 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="0" y="20">잠수탄 친구 찾기</tspan></text>
     </g>
   </g>
   </svg>

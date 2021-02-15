@@ -22,7 +22,7 @@ const xml = `
           <circle id="타원_725" data-name="타원 725" cx="9.5" cy="9.5" r="9.5" transform="translate(3.579 3.752)" fill="url(#pattern)"/>
         </g>
       </g>
-      <text id="노동자_구하기" data-name="노동자 구하기" transform="translate(206 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="-44.4" y="14">노동자 구하기</tspan></text>
+      <text id="노동자_구하기" data-name="노동자 구하기" transform="translate(206 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="0" y="20">노동자 구하기</tspan></text>
     </g>
   </g>
   </svg>

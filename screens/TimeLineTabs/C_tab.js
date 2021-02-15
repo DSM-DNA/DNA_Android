@@ -1,11 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import CHeader from "../../assets/Header/CHeader";
 
 const View = styled.View`
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+    flex: 13;
+    background-color: white;
+`;
+
+const Body = styled.View`
+    flex: 87;
+    background-color: white;
+`;
+
+const Header = styled.View`
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
 `;
 
 const Text = styled.Text`
@@ -13,7 +23,12 @@ const Text = styled.Text`
 `;
 
 export default () => (
-  <View>
-    <Text>Cytosine</Text>
-  </View>
+    <>
+        <View>
+            <CHeader />
+        </View>
+        <Body>
+            <Text>Hello</Text>
+        </Body>
+    </>
 );

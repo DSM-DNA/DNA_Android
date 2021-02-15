@@ -25,7 +25,7 @@ const xml = `
           </g>
         </g>
       </g>
-      <text id="일반_대화_하기" data-name="일반 대화 하기" transform="translate(204 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="-46.5" y="14">일반 대화 하기</tspan></text>
+      <text id="일반_대화_하기" data-name="일반 대화 하기" transform="translate(204 34)" fill="#fff" font-size="15" font-family="NanumGothic, Nanum Gothic" opacity="0.49"><tspan x="0" y="20">일반 대화 하기</tspan></text>
     </g>
   </g>
   </svg>
