@@ -8,7 +8,7 @@ import useInput from "../../hooks/useInput";
 const TestContainer = styled.View`
     flex: 1;
     justify-content: flex-start;
-    background-color: red;
+    background-color: white;
 `;
 
 const View = styled.View`
@@ -21,7 +21,6 @@ const View = styled.View`
 const _View = styled.View`
   width: 100%;
   height: 40%;
-  position: absolute;
   align-items: center;
   justify-content: flex-start;
 `;
@@ -30,7 +29,7 @@ const InputArea = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding-top: 15%;
+  padding-top: 16%;
   padding-bottom: 7%;
 `;
 
@@ -43,12 +42,6 @@ const EachInput = styled.View`
 const ButtonArea = styled.View`
   width: 100%;
   margin-bottom: 38%;
-`;
-
-const HeaderBack = styled.View`
-  width: 100%;
-  height: 40%;
-  background-color: #204051;
 `;
 
 export default ({navigation}) => {
@@ -65,7 +58,6 @@ export default ({navigation}) => {
   return (
     <TestContainer>
       <View>
-        <HeaderBack />
         <_View>
           <AuthBackground />
         </_View>
@@ -95,31 +87,3 @@ export default ({navigation}) => {
     </TestContainer>
   );
 };
-/*
-
-<View style={{flex: 1,flexDirection:'row', backgroundColor:'green', justifyContent:'center', alignItems:'center'}}>
-                <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center',alignSelf:'center'}}>
-                    <View style={{flex: 1,flexDirection:'row',alignItems:'flex-end',alignSelf:'flex-end',margin:10}}>
-                        <View style={{backgroundColor:'white',borderRadius:10,flexDirection:'column',height:100, width:100}}></View>
-                    </View>
-                    <View style={{flex: 1,flexDirection:'row',alignItems:'flex-start',alignSelf:'flex-end',margin:10}}>
-                        <View style={{backgroundColor:'white',borderRadius:10,flexDirection:'column',height:100, width:100}}></View>
-                    </View>
-                </View>
-
-                <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center',alignSelf:'center'}}>
-                    <View style={{flex: 1,flexDirection:'row',alignItems:'flex-end',alignSelf:'flex-start',margin:10}}>
-                        <View style={{backgroundColor:'white',borderRadius:10,flexDirection:'column',height:100, width:100}}></View>
-                    </View>
-                    <View style={{flex: 1,flexDirection:'row',alignItems:'flex-start',alignSelf:'flex-start',margin:10}}>
-                        <View style={{backgroundColor:'white',borderRadius:10,flexDirection:'column',height:100, width:100}}></View>
-                    </View>
-                </View>
-
-                <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute'}}>
-                    <View style={{backgroundColor:'blue',
-                        borderRadius:10,height:100, width:100, borderRadius:100/2}}></View>
-       </View>
-</View>
-
-*/

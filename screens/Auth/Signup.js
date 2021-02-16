@@ -7,18 +7,23 @@ import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 
+const TestContainer = styled.View`
+  flex: 1;
+  background-color: white;
+`;
+
 const View = styled.View`
-  background-color: #204051;
   justify-content: flex-end;
   align-items: center;
-  flex: 40;
+  height: 100%;
+  width: 100%;
 `;
 
 const _View = styled.View`
-  background-color: #ffffff;
-  justify-content: center;
+  width: 100%;
+  height: 40%;
   align-items: center;
-  flex: 60;
+  justify-content: flex-start;
 `;
 
 const ErrText = styled.Text`
@@ -30,12 +35,12 @@ const InputArea = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding-bottom: 8%;
+  padding-top: 18%;
+  padding-bottom: 6%;
 `;
 
 const EachInput = styled.View`
   align-items: center;
-  margin-bottom: 25px;
   width: 100%;
 `;
 
@@ -58,9 +63,13 @@ export default () => {
 
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let { text } = event.nativeEvent;
-    if (text === ""){
+    if (text === "") {
       setEmresult("");
-    } else if (!text.includes("@") || !text.includes(".") || !emailRegex.test(text)) {
+    } else if (
+      !text.includes("@") ||
+      !text.includes(".") ||
+      !emailRegex.test(text)
+    ) {
       setEmresult("※ 이메일 형식이 올바른지 확인해주세요");
     } else if (text === testEmail) {
       setEmresult("※ 이미 사용중인 이메일입니다.");
@@ -79,29 +88,29 @@ export default () => {
       setPwresult("※ 비밀번호를 확인해주세요");
     } else {
       setPwresult("");
-      if(checkflag === "check email"){
+      if (checkflag === "check email") {
         setCheckflag("can");
       }
     }
   };
 
   const handleSignup = async () => {
-    const { value : name} = nameInput;
-    const { value : email } = emailInput;
+    const { value: name } = nameInput;
+    const { value: email } = emailInput;
     const { value: password } = passwordInput;
-    if(checkflag !== "can"){
+    if (checkflag !== "can") {
       Alert.alert("회원정보를 입력해주세요");
     } else {
-      console.log(`name : ${name}\nemail : ${email}\npassword : ${email}`);
+      console.log(`name : ${name}\nemail : ${email}\npassword : ${password}`);
     }
   }; // Login Request
 
   return (
-    <>
+    <TestContainer>
       <View>
-        <AuthBackground />
-      </View>
-      <_View>
+        <_View>
+          <AuthBackground />
+        </_View>
         <InputArea>
           <EachInput>
             <AuthInput
@@ -112,6 +121,7 @@ export default () => {
               fontSize={"20px"}
               marginBottom={"20px"}
             />
+            <ErrText></ErrText>
           </EachInput>
           <EachInput>
             <AuthInput
@@ -135,6 +145,7 @@ export default () => {
               fontSize={"20px"}
               marginBottom={"20px"}
             />
+            <ErrText></ErrText>
           </EachInput>
           <EachInput>
             <AuthInput
@@ -153,7 +164,7 @@ export default () => {
         <ButtonArea>
           <AuthButton text="Sign Up" onPress={handleSignup} />
         </ButtonArea>
-      </_View>
-    </>
+      </View>
+    </TestContainer>
   );
 };
