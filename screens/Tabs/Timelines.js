@@ -15,6 +15,7 @@ const View = styled.View`
 `;
 
 const Header = styled.View`
+  flex-direction: row;
   margin-top: 54px;
   width: 80%;
   height: 18%;
@@ -79,6 +80,7 @@ export default ({navigation}) => (
   <View>
     <Header>
       <MainHeader />
+      <Text>Hello</Text>
     </Header>
     <Notice>
       <MainNotice />
