@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
+import { Alert } from "react-native";
+
+const baseUri = "http://121.66.14.43:9191";
 
 const TestContainer = styled.View`
     flex: 1;
@@ -52,7 +56,17 @@ export default ({navigation}) => {
     const { value : email } = emailInput;
     const { value : password} = passwordInput;
     console.log(email, password);
-    
+    axios.post(`${baseUri}/auth`, {
+      email: email,
+      passwword: password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      Alert.alert("회원정보가 없거나 잘못되었습니다.");
+      console.log(error);
+    });
   }; // Login Request
 
   return (
