@@ -15,7 +15,7 @@ export default () => {
         setIsLoggedIn(false);
       } else {
         setIsLoggedIn(true);
-        //setIsLoaded(true);
+        setIsLoaded(true);
       } 
     } catch(e) {
       console.log(e);
