@@ -27,12 +27,11 @@ export default () => {
           setValue({ age: itemValue });
         }}
       >
-        <Picker.Item label="나이를 입력하세요" value="" />
-        <Picker.Item label="10대" value="1" />
-        <Picker.Item label="20대" value="2" />
-        <Picker.Item label="30대" value="3" />
-        <Picker.Item label="40대" value="4" />
-        <Picker.Item label="50대 이상" value="5" />
+        <Picker.Item label="카테고리를 설정해주세요" value="" />
+        <Picker.Item label="T - 대리구매자 구하기" value="1" />
+        <Picker.Item label="G - 잠수탄 친구 찾기" value="2" />
+        <Picker.Item label="C - 일반 대화 하기" value="3" />
+        <Picker.Item label="A - 노동자 구하기" value="4" />
       </Picker>
     </View>
   );
@@ -41,6 +40,6 @@ export default () => {
 const styles = {
   picker: {
     width: "100%",
-    backgroundColor: "grey",
+    backgroundColor: "white",
   },
 };
