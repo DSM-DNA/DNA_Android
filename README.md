@@ -5,11 +5,12 @@
 * React Native 
 
 ## Screens
-- [ ] Login
-- [ ] Signup
+- [X] Login
+- [X] Signup
+- [X] Logout
 - [ ] TimeLine 
     * ATGC - 4 Screens
-    * Main
+- [X] Main
 - [ ] Write Post
 - [ ] Comments
 - [x] TabBarSetting
