@@ -60,11 +60,13 @@ export default ({navigation}) => {
     console.log(email, password);
     axios.post(`${baseUri}/auth`, {
       email: email,
-      passwword: password
+      password: password
     })
     .then(function (response) {
-      logIn("true");
-      console.log(response);
+      const res_obj = JSON.stringify(response.data);
+      const Obj = JSON.parse(res_obj);
+      const token = Obj["access-token"];
+      logIn(token);
     })
     .catch(function (error) {
       Alert.alert("회원정보가 없거나 잘못되었습니다.");

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useCallback } from "react";
 import { Alert } from "react-native";
@@ -6,6 +7,8 @@ import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
+
+const baseUri = "http://121.66.14.43:9191";
 
 const TestContainer = styled.View`
   flex: 1;
@@ -58,9 +61,18 @@ export default () => {
   const passwordInput = useInput("");
   const confirmPwInput = useInput("");
 
-  const confirmEmail = (event) => {
-    const testEmail = "kokt0203@naver.com";
+  const Request_Check = (email) => {
+    axios.get(`${baseUri}/email?${email}`)
+    .then(function (response) {
+      console.log(response);
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
+  const confirmEmail = async(event) => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let { text } = event.nativeEvent;
     if (text === "") {
@@ -71,11 +83,13 @@ export default () => {
       !emailRegex.test(text)
     ) {
       setEmresult("※ 이메일 형식이 올바른지 확인해주세요");
-    } else if (text === testEmail) {
-      setEmresult("※ 이미 사용중인 이메일입니다.");
     } else {
-      setEmresult("");
-      setCheckflag("check email");
+      if (await Request_Check(text) === true) {
+        setEmresult("※ 이미 사용중인 이메일입니다.");
+      } else{
+        setEmresult("");
+        setCheckflag("check email");
+      }
     }
   };
 
@@ -102,6 +116,18 @@ export default () => {
       Alert.alert("회원정보를 입력해주세요");
     } else {
       console.log(`name : ${name}\nemail : ${email}\npassword : ${password}`);
+      await axios.post(`${baseUri}/signup`, {
+        name: name,
+        password: password,
+        email: email
+      })
+      .then(function (response) {
+        console.log(response);
+        NavigationPreloadManager.navigate("Login");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }; // Login Request
 
