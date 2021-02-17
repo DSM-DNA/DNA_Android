@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import GlobeSvg from "../../assets/images/globe.js";
-import AuthButton from "../../components/AuthButton.js";
+import GlobeSvg from "../assets/images/globe";
 
 const View = styled.View`
   flex: 1;
@@ -22,7 +21,12 @@ const ButtonContainer = styled.View`
   width: 100%;
 `;
 
-export default ({ navigation }) => (
+const Text = styled.Text`
+    font-size:40px;
+    color: white;
+`
+
+export default () => (
   <>
     <View>
       <ImgContainer>
@@ -31,15 +35,7 @@ export default ({ navigation }) => (
     </View>
     <View>
       <ButtonContainer>
-        <AuthButton
-          text={"Sign In"}
-          onPress={() => navigation.navigate("Login")}
-        />
-        <AuthButton
-          text={"Sign Up"}
-          bgColor={"#ffffff"}
-          onPress={() => navigation.navigate("Signup")}
-        />
+        <Text>Loading...</Text>
       </ButtonContainer>
     </View>
   </>
