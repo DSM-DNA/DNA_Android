@@ -52,7 +52,7 @@ const ButtonArea = styled.View`
   margin-bottom: 15%;
 `;
 
-export default () => {
+export default ({ navigation }) => {
   const [checkflag, setCheckflag] = useState("");
   const [pwresult, setPwresult] = useState("");
   const [emresult, setEmresult] = useState("");
@@ -123,7 +123,7 @@ export default () => {
       })
       .then(function (response) {
         console.log(response);
-        NavigationPreloadManager.navigate("Login");
+        navigation.navigate("Login");
       })
       .catch(function (error) {
         console.log(error);
