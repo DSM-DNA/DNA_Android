@@ -6,6 +6,7 @@ import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { Alert } from "react-native";
+import { useLogIn } from "../../AuthContext";
 
 const baseUri = "http://121.66.14.43:9191";
 
@@ -51,6 +52,7 @@ const ButtonArea = styled.View`
 export default ({navigation}) => {
   const emailInput = useInput("");
   const passwordInput = useInput("");
+  const logIn = useLogIn();
 
   const handleLogin = async () => {
     const { value : email } = emailInput;
@@ -61,6 +63,7 @@ export default ({navigation}) => {
       passwword: password
     })
     .then(function (response) {
+      logIn("true");
       console.log(response);
     })
     .catch(function (error) {
