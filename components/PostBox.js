@@ -36,6 +36,21 @@ const Bottom = styled.View`
   justify-content: flex-start;
 `;
 
+const Delete = styled.TouchableOpacity`
+  flex: 0.3;
+  padding-left: 1%;
+  margin-top: 7px;
+  margin-right: 15px;
+  justify-content: flex-start;
+  background-color: #204051;
+  height: 15px;
+  width: 50px;
+`;
+
+const Del_Text = styled.Text`
+  color: white;
+`;
+
 const Name_Title = styled.Text`
   color: #204051;
   font-weight: bold;
@@ -58,13 +73,22 @@ export default (props) => {
       <Component>
         <Header>
           <Name_Title style={{ fontSize: 20 }}>{props.name}</Name_Title>
-          <Date_Text style={{ fontSize: 15 }}>{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
-          <Day style={{ fontSize: 20 }}>{`${date.getDay() < 10 ? "0" + date.getDay() : date.getDay()}일`}</Day>
+          <Date_Text
+            style={{ fontSize: 15 }}
+          >{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
+          <Day style={{ fontSize: 20 }}>{`${
+            date.getDay() < 10 ? "0" + date.getDay() : date.getDay()
+          }일`}</Day>
         </Header>
         <Bottom>
           <Name_Title style={{ fontSize: 20 }}>{props.title}</Name_Title>
           <Date_Text>{props.content}</Date_Text>
         </Bottom>
+        {props.isMine === true ? (
+          <Delete>
+            <Del_Text style={{ fontSize: 10 }}>삭제</Del_Text>
+          </Delete>
+        ) : null}
       </Component>
     </Box>
   );
