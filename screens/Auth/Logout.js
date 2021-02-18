@@ -110,7 +110,7 @@ export default ({ navigation }) => {
       [
         {
           text: "No",
-          onPress: () => null,
+          onPress: () => navigation.navigate("Home"),
         },
         {
           text: "Yes",
