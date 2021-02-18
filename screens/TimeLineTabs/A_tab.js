@@ -1,34 +1,59 @@
 import React from "react";
+import { ScrollView } from "react-native";
 import styled from "styled-components";
 import AHeader from "../../assets/Header/AHeader";
+import PostBox from "../../components/PostBox";
 
 const View = styled.View`
-    flex: 13;
-    background-color: white;
+  background-color: white;
+`;
+
+const AllView = styled.View`
+  height: 100%;
 `;
 
 const Body = styled.View`
-    flex: 87;
-    background-color: white;
+  background-color: red;
+  align-items: center;
 `;
 
-const Header = styled.View`
-    justify-content: flex-end;
-    width: 100%;
-    height: 100%;
-`;
-
-const Text = styled.Text`
-  color: black;
+const PostArea = styled.View`
+  margin-top: 6%;
+  width: 93.6%;
+  height: 130px;
+  border-radius: 10px;
 `;
 
 export default () => (
-    <>
-        <View>
-            <AHeader />
-        </View>
+  <AllView>
+    <View
+      style={{ flex: 13, justifyContent: "flex-start", alignItems: "center" }}
+    >
+      <AHeader />
+    </View>
+    <View style={{ flex: 87 }}>
+      <ScrollView>
         <Body>
-            <Text>Hello</Text>
+          <PostArea>
+            <PostBox />
+          </PostArea>
+          <PostArea>
+            <PostBox />
+          </PostArea>
+          <PostArea>
+            <PostBox />
+          </PostArea>
+          <PostArea>
+            <PostBox />
+          </PostArea>
+          <PostArea>
+            <PostBox />
+          </PostArea>
+          <PostArea>
+            <PostBox />
+          </PostArea>
         </Body>
-    </>
+      </ScrollView>
+    </View>
+  </AllView>
 );
