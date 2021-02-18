@@ -25,7 +25,6 @@ export default () => {
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
-    console.log(`GetToken : ${token}`);
     return token;
   };
 
@@ -41,14 +40,13 @@ export default () => {
       .get(`${baseUri}/timeline/BUYER?size=30&page=0`, config)
       .then(function (response) {
         setPosts(response.data.timelineResponses);
-        console.log(response.data.timelineResponses);
       })
       .catch(function (error) {
         console.log(error);
         Alert.alert("데이터를 불러올수 없습니다.");
       });
   };
-  useEffect(() =>  {
+  useEffect(() => {
     GetPost();
   }, []);
 

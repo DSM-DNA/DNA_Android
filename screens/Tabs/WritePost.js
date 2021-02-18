@@ -74,7 +74,7 @@ const Text = styled.Text`
   color: black;
 `;
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const titleInput = useInput("");
@@ -82,7 +82,6 @@ export default ({navigation}) => {
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
-    console.log(`GetToken : ${token}`);
     return token;
   };
 
@@ -92,13 +91,9 @@ export default ({navigation}) => {
     const { value: text } = textInput;
     const token = await GetToken();
     const req_token = "Bearer " + token;
-    console.log(value);
-    console.log(title);
-    console.log(text);
-    console.log(`UploadPost : ${req_token}`);
 
     const config = {
-      headers: { Authorization: req_token }
+      headers: { Authorization: req_token },
     };
 
     await axios
@@ -111,9 +106,6 @@ export default ({navigation}) => {
         },
         config
       )
-      .then(function (response) {
-        console.log(response);
-      })
       .catch(function (error) {
         Alert.alert("게시물등록에 실패했습니다.");
         console.log(error);
@@ -137,7 +129,6 @@ export default ({navigation}) => {
               selectedValue={value}
               onValueChange={(itemValue, itemIndex) => {
                 setValue(itemValue);
-                console.log(value);
               }}
             >
               <Picker.Item label="카테고리를 설정해주세요" value="" />

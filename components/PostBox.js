@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
 import { Alert } from "react-native";
 import styled from "styled-components";
 
@@ -77,7 +76,6 @@ export default (props) => {
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
-    console.log(`GetToken : ${token}`);
     return token;
   };
 
@@ -91,9 +89,6 @@ export default (props) => {
 
     await axios
       .delete(`${baseUri}/timeline/${props.timelineId}`, config)
-      .then(function (response) {
-        console.log(response);
-      })
       .catch(function (error) {
         console.log(error);
         Alert.alert("게시물을 삭제할 수 없습니다.");

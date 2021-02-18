@@ -57,7 +57,6 @@ export default ({navigation}) => {
   const handleLogin = async () => {
     const { value : email } = emailInput;
     const { value : password} = passwordInput;
-    console.log(email, password);
     axios.post(`${baseUri}/auth`, {
       email: email,
       password: password
@@ -72,7 +71,7 @@ export default ({navigation}) => {
       Alert.alert("회원정보가 없거나 잘못되었습니다.");
       console.log(error);
     });
-  }; // Login Request
+  };
 
   return (
     <TestContainer>

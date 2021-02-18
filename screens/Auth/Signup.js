@@ -60,62 +60,43 @@ export default ({ navigation }) => {
   const passwordInput = useInput("");
   const confirmPwInput = useInput("");
 
-  const Request_Check = async(email) => {
-    axios.get(`${baseUri}/email?email=${email}`)
-    .then(function (response) {
-      console.log("email res");
-      let res = response.request._response;
-      console.log(res);
-      if (res !== "true") {
-        console.log(typeof(res));
-        console.log(res === "true");
-        setEmresult("※ 이미 사용중인 이메일입니다.");
-      } else{
-        console.log("Check!");
-        setEmresult("");
-        console.log(`Before CEM : ${checkflag}`);
-        setCheckflag("checkemail");
-        console.log(`After CEM : ${checkflag}`)
+  const Request_Check = async (email) => {
+    axios
+      .get(`${baseUri}/email?email=${email}`)
+      .then(function (response) {
+        let res = response.request._response;
+        if (res !== "true") {
+          setEmresult("※ 이미 사용중인 이메일입니다.");
+        } else {
+          setEmresult("");
+          setCheckflag("checkemail");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-      }
-    })
-    .catch(function (error) {
-      console.log("email err");
-      console.log(error);
-    });
-  }
-
-  const confirmEmail = async() => {
-    const { value : email } = emailInput;
-    console.log(email);
+  const confirmEmail = async () => {
+    const { value: email } = emailInput;
     if (email === "") {
-      console.log("email empty");
       setEmresult("");
-    } else if (
-      !email.includes("@dsm.hs.kr") 
-    ) {
-      console.log("email does not include @dsm.hs.kr")
+    } else if (!email.includes("@dsm.hs.kr")) {
       setEmresult("※ 이메일 형식이 올바른지 확인해주세요");
     } else {
-      console.log("email has @dsm.hs.kr");
       await Request_Check(email);
     }
   };
 
-  const confirmPw = async(event) => {
+  const confirmPw = async (event) => {
     const { value: password } = passwordInput;
     let { text } = event.nativeEvent;
-    console.log(password);
-    console.log(text);
-    console.log(event.nativeEvent);
     if (password !== text) {
       setPwresult("※ 비밀번호를 확인해주세요");
     } else {
       setPwresult("");
       if (checkflag === "") {
-        console.log(`Before CPW Check flag : ${checkflag}`);
         await setCheckflag("can");
-        console.log(`After CPW Check flag : ${checkflag}`);
       }
     }
   };
@@ -126,22 +107,20 @@ export default ({ navigation }) => {
     const { value: password } = passwordInput;
     confirmEmail();
     if (checkflag !== "checkemail") {
-      console.log(`Fail Code : ${checkflag}`);
       Alert.alert("회원정보를 입력해주세요");
     } else {
-      console.log(`name : ${name}\nemail : ${email}\npassword : ${password}`);
-      await axios.post(`${baseUri}/signup`, {
-        name: name,
-        password: password,
-        email: email
-      })
-      .then(function (response) {
-        console.log(response);
-        navigation.navigate("Login");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      await axios
+        .post(`${baseUri}/signup`, {
+          name: name,
+          password: password,
+          email: email,
+        })
+        .then(function (response) {
+          navigation.navigate("Login");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }; // Login Request
 

@@ -25,7 +25,6 @@ export default () => {
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
-    console.log(`GetToken : ${token}`);
     return token;
   };
 
@@ -41,7 +40,6 @@ export default () => {
       .get(`${baseUri}/timeline/WORKER?size=30&page=0`, config)
       .then(function (response) {
         setPosts(response.data.timelineResponses);
-        console.log(response.data.timelineResponses);
       })
       .catch(function (error) {
         console.log(error);

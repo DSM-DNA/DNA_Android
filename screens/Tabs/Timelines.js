@@ -10,11 +10,12 @@ import MainHeader from "../../assets/images/MainHeader";
 import MainNotice from "../../assets/images/MainNotice";
 import Thymine from "../../assets/images/Thymine";
 import { useLogOut } from "../../AuthContext";
-import Logout from "../Auth/Logout";
-import { useState } from "react/cjs/react.development";
 import { Alert } from "react-native";
 
 const baseUri = "http://121.66.14.43:9191";
+
+const green = "#CAE8D5";
+const white = "#ffffff";
 
 const View = styled.View`
   background-color: white;
@@ -67,9 +68,6 @@ const EachButton = styled.View`
   height: 100%;
 `;
 
-const green = "#CAE8D5";
-const white = "#ffffff";
-
 const Container = styled.TouchableOpacity`
   background-color: ${(props) => props.bgColor};
   width: 190px;
@@ -79,7 +77,7 @@ const Container = styled.TouchableOpacity`
   padding-left: 7px;
   elevation: 3;
 `;
-//width: 206px height 190px;
+
 const Text = styled.Text`
   color: black;
   font-size: 15px;
@@ -90,15 +88,9 @@ export default ({ navigation }) => {
 
   const Logout = async () => {
     const token = "";
-    axios
-      .get(`${baseUri}/logout?${token}`)
-      .then(function (response) {
-        console.log(response);
-        return response;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    axios.get(`${baseUri}/logout?${token}`).catch(function (error) {
+      console.log(error);
+    });
     logOut();
   };
 
