@@ -1,34 +1,94 @@
+import AsyncStorage from "@react-native-community/async-storage";
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Alert, ScrollView } from "react-native";
+import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
 import CHeader from "../../assets/Header/CHeader";
+import PostBox from "../../components/PostBox";
+
+const baseUri = "http://121.66.14.43:9191";
 
 const View = styled.View`
-    flex: 13;
-    background-color: white;
+  background-color: white;
 `;
 
-const Body = styled.View`
-    flex: 87;
-    background-color: white;
+const AllView = styled.View`
+  flex: 1;
+  height: 100%;
 `;
 
-const Header = styled.View`
-    justify-content: flex-end;
-    width: 100%;
-    height: 100%;
-`;
+export default () => {
+  const [posts, setPosts] = useState(null);
 
-const Text = styled.Text`
-  color: black;
-`;
+  const GetToken = async () => {
+    const token = await AsyncStorage.getItem("jwt");
+    console.log(`GetToken : ${token}`);
+    return token;
+  };
 
-export default () => (
-    <>
-        <View>
-            <CHeader />
-        </View>
-        <Body>
-            <Text>Hello</Text>
-        </Body>
-    </>
-);
+  const GetPost = async () => {
+    const token = await GetToken();
+    const req_token = "Bearer " + token;
+
+    const config = {
+      headers: { Authorization: req_token },
+    };
+
+    await axios
+      .get(`${baseUri}/timeline/COMMON?size=30&page=0`, config)
+      .then(function (response) {
+        setPosts(response.data.timelineResponses);
+        console.log(response.data.timelineResponses);
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert("데이터를 불러올수 없습니다.");
+      });
+  };
+  useEffect(() =>  {
+    GetPost();
+  }, []);
+
+  return (
+    <AllView>
+      <View
+        style={{
+          height: "13%",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <CHeader />
+      </View>
+      <View style={{ width: "100%", height: "87%", alignItems: "center" }}>
+        <PTRView
+          style={{
+            width: "100%",
+            height: "87%",
+          }}
+          onRefresh={() => {
+            GetPost();
+          }}
+          pullHeight={100}
+        >
+          <ScrollView>
+            {posts?.map((post) => (
+              <PostBox
+                key={post.timelineId}
+                content={post.content}
+                createdAt={post.createdAt}
+                isMine={post.isMine}
+                name={post.name}
+                timelineId={post.timelineId}
+                title={post.title}
+              />
+            ))}
+          </ScrollView>
+        </PTRView>
+      </View>
+    </AllView>
+  );
+};
