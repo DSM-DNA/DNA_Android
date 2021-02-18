@@ -8,7 +8,7 @@ import WriteButton from "../../components/WriteButton";
 import { TextInput } from "react-native-gesture-handler";
 import useInput from "../../hooks/useInput";
 import axios from "axios";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const baseUri = "http://121.66.14.43:9191";
@@ -74,7 +74,7 @@ const Text = styled.Text`
   color: black;
 `;
 
-export default () => {
+export default ({navigation}) => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const titleInput = useInput("");
@@ -91,20 +91,21 @@ export default () => {
     const { value: title } = titleInput;
     const { value: text } = textInput;
     const token = await GetToken();
+    const req_token = "Bearer " + token;
     console.log(value);
     console.log(title);
     console.log(text);
-    console.log(`UploadPost : ${token}`);
+    console.log(`UploadPost : ${req_token}`);
 
     const config = {
-      headers: { Authentication: token }
+      headers: { Authorization: req_token }
     };
 
     await axios
       .post(
         `${baseUri}/timeline`,
         {
-          type: value,
+          type: "COMMON",
           title: title,
           content: text,
         },
@@ -118,6 +119,9 @@ export default () => {
         console.log(error);
       });
     setLoading(false);
+    navigation.navigate("Home");
+    Keyboard.dismiss();
+    Alert.alert("게시글 작성에 성공하였습니다.");
   };
   return (
     <Container>
@@ -135,11 +139,11 @@ export default () => {
                 setValue(itemValue);
               }}
             >
-              <Picker.Item label="카테고리를 설정해주세요" value="worker" />
-              <Picker.Item label="A - 노동자 구하기" value="worker" />
-              <Picker.Item label="T - 대리구매자 구하기" value="buyer" />
-              <Picker.Item label="G - 잠수탄 친구 찾기" value="dive" />
-              <Picker.Item label="C - 일반 대화 하기" value="common" />
+              <Picker.Item label="카테고리를 설정해주세요" value="WORKER" />
+              <Picker.Item label="A - 노동자 구하기" value="WORKER" />
+              <Picker.Item label="T - 대리구매자 구하기" value="BUYER" />
+              <Picker.Item label="G - 잠수탄 친구 찾기" value="DIVE" />
+              <Picker.Item label="C - 일반 대화 하기" value="COMMON" />
             </Picker>
           </View>
           <View>

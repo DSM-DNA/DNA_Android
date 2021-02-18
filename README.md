@@ -11,7 +11,10 @@
 - [ ] TimeLine 
     * ATGC - 4 Screens
 - [X] Main
-- [ ] Write Post
+- [X] Write Post
+- [ ] Delete Post
 - [ ] Comments
+- [ ] Write Comments
+- [ ] Delete Comments
 - [x] TabBarSetting
 - [x] SetNavigation
