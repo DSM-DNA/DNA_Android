@@ -48,7 +48,7 @@ export default () => {
         Alert.alert("데이터를 불러올수 없습니다.");
       });
   };
-  useEffect(() =>  {
+  useEffect(() => {
     GetPost();
   }, []);
 

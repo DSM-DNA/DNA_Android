@@ -105,7 +105,7 @@ export default ({navigation}) => {
       .post(
         `${baseUri}/timeline`,
         {
-          type: "COMMON",
+          type: value,
           title: title,
           content: text,
         },
@@ -137,9 +137,10 @@ export default ({navigation}) => {
               selectedValue={value}
               onValueChange={(itemValue, itemIndex) => {
                 setValue(itemValue);
+                console.log(value);
               }}
             >
-              <Picker.Item label="카테고리를 설정해주세요" value="WORKER" />
+              <Picker.Item label="카테고리를 설정해주세요" value="" />
               <Picker.Item label="A - 노동자 구하기" value="WORKER" />
               <Picker.Item label="T - 대리구매자 구하기" value="BUYER" />
               <Picker.Item label="G - 잠수탄 친구 찾기" value="DIVE" />
