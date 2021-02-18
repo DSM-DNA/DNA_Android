@@ -4,7 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import WritePost from "../screens/Tabs/WritePost";
 import Logout from "../screens/Auth/Logout";
-import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Timelines from "../screens/Tabs/Timelines";
 import A_tab from "../screens/TimeLineTabs/A_tab";
