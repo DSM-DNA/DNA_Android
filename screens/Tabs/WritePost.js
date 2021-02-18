@@ -7,6 +7,11 @@ import WriteBottom from "../../assets/images/WriteBottom";
 import WriteButton from "../../components/WriteButton";
 import { TextInput } from "react-native-gesture-handler";
 import useInput from "../../hooks/useInput";
+import axios from "axios";
+import { Alert } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
+
+const baseUri = "http://121.66.14.43:9191";
 
 const Container = styled.View`
   flex: 1;
@@ -30,7 +35,7 @@ const CenterInnerBox = styled.View`
   align-items: center;
   width: 93.4%;
   height: 100%;
-  background-color: #EBEEEF;
+  background-color: #ebeeef;
 `;
 
 const BottomBox = styled.View`
@@ -71,11 +76,49 @@ const Text = styled.Text`
 
 export default () => {
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const titleInput = useInput("");
-  const UploadPost = async() => {
-    const { value : title} = titleInput;
+  const textInput = useInput("");
+
+  const GetToken = async () => {
+    const token = await AsyncStorage.getItem("jwt");
+    console.log(`GetToken : ${token}`);
+    return token;
+  };
+
+  const UploadPost = async () => {
+    setLoading(true);
+    const { value: title } = titleInput;
+    const { value: text } = textInput;
+    const token = await GetToken();
+    console.log(value);
     console.log(title);
-  }
+    console.log(text);
+    console.log(`UploadPost : ${token}`);
+
+    const config = {
+      headers: { Authentication: token }
+    };
+
+    await axios
+      .post(
+        `${baseUri}/timeline`,
+        {
+          type: value,
+          title: title,
+          content: text,
+        },
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        Alert.alert("게시물등록에 실패했습니다.");
+        console.log(error);
+      });
+    setLoading(false);
+  };
   return (
     <Container>
       <HeaderBox>
@@ -85,30 +128,36 @@ export default () => {
         <CenterInnerBox>
           <View>
             <Picker
+              fontSize={16}
               style={styles.picker}
-              selectedValue={value.age}
+              selectedValue={value}
               onValueChange={(itemValue, itemIndex) => {
-                setValue({ age: itemValue });
+                setValue(itemValue);
               }}
-              >
-              <Picker.Item label="카테고리를 설정해주세요" value="" />
-              <Picker.Item label="T - 대리구매자 구하기" value="1" />
-              <Picker.Item label="G - 잠수탄 친구 찾기" value="2" />
-              <Picker.Item label="C - 일반 대화 하기" value="3" />
-              <Picker.Item label="A - 노동자 구하기" value="4" />
+            >
+              <Picker.Item label="카테고리를 설정해주세요" value="worker" />
+              <Picker.Item label="A - 노동자 구하기" value="worker" />
+              <Picker.Item label="T - 대리구매자 구하기" value="buyer" />
+              <Picker.Item label="G - 잠수탄 친구 찾기" value="dive" />
+              <Picker.Item label="C - 일반 대화 하기" value="common" />
             </Picker>
           </View>
           <View>
             <TextInput
               {...titleInput}
-              secureTextEntry={false}
+              fontSize={16}
               placeholder="  제목을 입력해주세요"
-              keyboardType="default"
               autoCorrect={false}
             />
           </View>
           <_View>
-            <TextInput placeholder="  내용을 입력해주세요 (100자 이내)" style = {{flexShrink:1}} multiline ={true}/>
+            <TextInput
+              {...textInput}
+              fontSize={16}
+              placeholder="  내용을 입력해주세요 (100자 이내)"
+              style={{ flexShrink: 1 }}
+              multiline={true}
+            />
           </_View>
         </CenterInnerBox>
       </CenterBox>
@@ -117,7 +166,7 @@ export default () => {
       </BottomBox>
       <ButtonBox>
         <TouchButton onPress={UploadPost}>
-          <WriteButton />
+          {loading ? <Text>Loading</Text> : <WriteButton />}
         </TouchButton>
       </ButtonBox>
     </Container>
@@ -130,6 +179,6 @@ const styles = {
     height: "80%",
     backgroundColor: "white",
     fontSize: "8px",
-    color: "#B5B5B5"
+    color: "#B5B5B5",
   },
 };

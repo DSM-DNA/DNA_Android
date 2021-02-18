@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useCallback } from "react";
 import { Alert } from "react-native";
 import styled from "styled-components";
 import AuthBackground from "../../assets/images/AuthBackground";
@@ -61,49 +60,62 @@ export default ({ navigation }) => {
   const passwordInput = useInput("");
   const confirmPwInput = useInput("");
 
-  const Request_Check = (email) => {
-    axios.get(`${baseUri}/email?${email}`)
+  const Request_Check = async(email) => {
+    axios.get(`${baseUri}/email?email=${email}`)
     .then(function (response) {
-      console.log(response);
-      return response;
+      console.log("email res");
+      let res = response.request._response;
+      console.log(res);
+      if (res !== "true") {
+        console.log(typeof(res));
+        console.log(res === "true");
+        setEmresult("※ 이미 사용중인 이메일입니다.");
+      } else{
+        console.log("Check!");
+        setEmresult("");
+        console.log(`Before CEM : ${checkflag}`);
+        setCheckflag("checkemail");
+        console.log(`After CEM : ${checkflag}`)
+
+      }
     })
     .catch(function (error) {
+      console.log("email err");
       console.log(error);
     });
   }
 
-  const confirmEmail = async(event) => {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let { text } = event.nativeEvent;
-    if (text === "") {
+  const confirmEmail = async() => {
+    const { value : email } = emailInput;
+    console.log(email);
+    if (email === "") {
+      console.log("email empty");
       setEmresult("");
     } else if (
-      !text.includes("@") ||
-      !text.includes(".") ||
-      !emailRegex.test(text)
+      !email.includes("@dsm.hs.kr") 
     ) {
+      console.log("email does not include @dsm.hs.kr")
       setEmresult("※ 이메일 형식이 올바른지 확인해주세요");
     } else {
-      if (await Request_Check(text) === true) {
-        setEmresult("※ 이미 사용중인 이메일입니다.");
-      } else{
-        setEmresult("");
-        setCheckflag("check email");
-      }
+      console.log("email has @dsm.hs.kr");
+      await Request_Check(email);
     }
   };
 
-  const confirmPw = (event) => {
+  const confirmPw = async(event) => {
     const { value: password } = passwordInput;
     let { text } = event.nativeEvent;
+    console.log(password);
     console.log(text);
     console.log(event.nativeEvent);
     if (password !== text) {
       setPwresult("※ 비밀번호를 확인해주세요");
     } else {
       setPwresult("");
-      if (checkflag === "check email") {
-        setCheckflag("can");
+      if (checkflag === "") {
+        console.log(`Before CPW Check flag : ${checkflag}`);
+        await setCheckflag("can");
+        console.log(`After CPW Check flag : ${checkflag}`);
       }
     }
   };
@@ -112,7 +124,9 @@ export default ({ navigation }) => {
     const { value: name } = nameInput;
     const { value: email } = emailInput;
     const { value: password } = passwordInput;
-    if (checkflag !== "can") {
+    confirmEmail();
+    if (checkflag !== "checkemail") {
+      console.log(`Fail Code : ${checkflag}`);
       Alert.alert("회원정보를 입력해주세요");
     } else {
       console.log(`name : ${name}\nemail : ${email}\npassword : ${password}`);
@@ -154,7 +168,6 @@ export default ({ navigation }) => {
               {...emailInput}
               placeholder="e-mail을 입력하세요"
               keyboardType="email-address"
-              onChange={(event) => confirmEmail(event)}
               autoCorrect={false}
               fontSize={"20px"}
               marginBottom={"20px"}
