@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Alert, ScrollView } from "react-native";
 import PTRView from "react-native-pull-to-refresh";
@@ -47,6 +48,9 @@ export default () => {
         Alert.alert("데이터를 불러올수 없습니다.");
       });
   };
+  useEffect(() =>  {
+    GetPost();
+  }, []);
 
   return (
     <AllView>
