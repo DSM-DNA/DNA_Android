@@ -8,11 +8,11 @@
 - [X] Login
 - [X] Signup
 - [X] Logout
-- [ ] TimeLine 
+- [X] TimeLine 
     * ATGC - 4 Screens
 - [X] Main
 - [X] Write Post
-- [ ] Delete Post
+- [X] Delete Post
 - [ ] Comments
 - [ ] Write Comments
 - [ ] Delete Comments
