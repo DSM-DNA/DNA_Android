@@ -1,21 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import PTRView from "react-native-pull-to-refresh";
+import LogoutBack from "../../assets/images/LogoutBack";
 
 const View = styled.View`
   flex: 1;
   width: 100%;
   height: 100%;
-  background-color: red;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+`;
+
+const Image = styled.View`
+  width: 80%;
+  height: 50%;
 `;
 
 export default () => {
-  const refresh = async() => {
-    await setTimeout(()=>{console.log("load")}, 2000);
-  }
+
   return (
-    <PTRView onRefresh={() => refresh()}>
-      <View/>
-    </PTRView>
+    <View>
+      <Image>
+        <LogoutBack />
+      </Image>
+    </View>
   );
 }
