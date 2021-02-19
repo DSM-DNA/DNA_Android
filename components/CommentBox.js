@@ -72,7 +72,7 @@ export default (props) => {
       .delete(`${baseUri}/comment/${props.commentId}`, config)
       .catch(function (error) {
         console.log(error);
-        Alert.alert("게시물을 삭제할 수 없습니다.");
+        Alert.alert("댓글을 삭제할 수 없습니다.");
       });
   };
 

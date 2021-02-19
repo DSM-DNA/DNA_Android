@@ -4,7 +4,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Alert, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
 import AHeader from "../../assets/Header/AHeader";
@@ -23,6 +22,7 @@ const AllView = styled.View`
 
 export default ({ navigation }) => {
   const [posts, setPosts] = useState(null);
+  const [count, setCount] = useState(0);
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
@@ -41,6 +41,7 @@ export default ({ navigation }) => {
       .get(`${baseUri}/timeline/WORKER?size=30&page=0`, config)
       .then(function (response) {
         setPosts(response.data.timelineResponses);
+        setCount(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -76,6 +77,7 @@ export default ({ navigation }) => {
             alignItems: "center",
           }}
         >
+          {count === 1 && <Text>게시물이 없습니다.</Text>}
           {posts?.map((post) => (
             <PostBox
               onPress={()=> navigation.navigate("Comments", post)}
