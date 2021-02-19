@@ -7,7 +7,6 @@ const Container = styled.View`
     height: 80px;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-left: 6%;
     background-color: white;
     elevation: 6;
 `;
@@ -21,8 +20,6 @@ const Footer = styled.View`
     width: 96%;
     height: 70%;
     padding-left: 3%;
-    align-items: center;
-    justify-content: center;
 `;
 
 const Delete = styled.TouchableOpacity`
@@ -53,20 +50,20 @@ const Content = styled.Text`
 `;
 
 
-export default () => {
+export default (props) => {
     return (
         <Container>
             <Header>
                 <WriterBox style={{top: 5, left: 6}}>
-                    <Writer style={{fontSize: 15}}>김해교</Writer>
+                    <Writer style={{fontSize: 15}}>null</Writer>
                 </WriterBox>
                 <Delete style={{top: 3, right: 7}}>
-                    <Del_Text>삭제하기</Del_Text>
+                    {props.isMine === true ? <Del_Text>삭제하기</Del_Text> : null}
                 </Delete>
             </Header>
             <Footer>
                 <Content style={{fontSize: 12}}>
-                배고프다나먹고싶은게너무많아근데돈이없어서그냥자동다이어트아나진짜다이어트해야하는데망했다이번방학에도빙가빙가으휴진짜나태는답없다
+                    {props.content}
                 </Content>
             </Footer>
         </Container>

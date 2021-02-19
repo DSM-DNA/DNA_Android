@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Alert, ScrollView, Text } from "react-native";
+import { MaterialCommunityIcons } from "react-native-vector-icons";
 import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
 import AHeader from "../assets/Header/AHeader";
@@ -26,7 +27,7 @@ const AllView = styled.View`
 `;
 
 const Comment = styled.TextInput`
-  background-color: grey;
+  background-color: #D9D9D9;
   width: 90%;
   height: 100%;
   padding-left: 8px;
@@ -34,17 +35,20 @@ const Comment = styled.TextInput`
   left: 0;
 `;
 
-const Submit = styled.View`
-  background-color: grey;
+const Submit = styled.TouchableOpacity`
+  background-color: #D9D9D9;
   height: 100%;
   width: 10%;
   position: absolute;
+  justify-content: center;
+  align-items: center;
   right: 0;
 `;
 
 export default ({ route }) => {
   const post = route.params;
   const [comments, setComments] = useState(null);
+  const [count, setCount] = useState(0);
   const commentInput = useInput("");
 
   const GetToken = async () => {
@@ -64,10 +68,8 @@ export default ({ route }) => {
       .get(`${baseUri}/comment/${post.timelineId}?size=30&page=0`, config)
       .then(function (response) {
         setComments(response.data.commentResponses);
+        setCount(response.data.totalElements);
         console.log(response.data);
-        if(response.data.totalElements === 0){
-            Alert.alert("댓글이 없습니다.");
-        }
       })
       .catch(function (error) {
         console.log(error);
@@ -90,7 +92,7 @@ export default ({ route }) => {
       >
         {post.type === "WORKER" && <AHeader />}
         {post.type === "BUYER" && <THeader />}
-        {post.type === "DIVE" && <GHeader />}
+        {post.type === "DIVER" && <GHeader />}
         {post.type === "COMMON" && <CHeader />}
       </View>
       <View style={{ height: 130, width: "100%", backgroundColor: "yellow" }}>
@@ -137,21 +139,35 @@ export default ({ route }) => {
         }}
         pullHeight={60}
       >
-        <ScrollView>
-          <CommentBox />
+        <ScrollView contentContainerStyle={{alignItems: "center"}}>
+            {count === 0 && <Text>댓글이 없습니다.</Text>}
+            {count !== 0 && comments && comments.map((comment) => (
+                <CommentBox
+                    key={comment.commentId}
+                    commentId={comment.commentId}
+                    content={comment.content}
+                    isMine={comment.isMine}
+                />
+            ))}
         </ScrollView>
       </PTRView>
       <View
-        style={{ width: "100%", height: "5%", alignItems: "space-between" }}
+        style={{ width: "100%", height: "10%", alignItems: "space-between" }}
       >
         <Comment
           fontSize={20}
           placeholder="댓글 입력"
           autoCorrect={false}
           {...commentInput}
-        ></Comment>
-
-        <Submit />
+          multiline={true}
+        />
+        <Submit>
+            <MaterialCommunityIcons
+              name="comment-arrow-right-outline"
+              color={"#111111"}
+              size={30}
+            />
+        </Submit>
       </View>
     </AllView>
   );

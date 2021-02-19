@@ -37,7 +37,7 @@ export default () => {
     };
 
     await axios
-      .get(`${baseUri}/timeline/DIVE?size=30&page=0`, config)
+      .get(`${baseUri}/timeline/DIVER?size=30&page=0`, config)
       .then(function (response) {
         setPosts(response.data.timelineResponses);
       })
