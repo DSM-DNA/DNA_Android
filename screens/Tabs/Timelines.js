@@ -38,7 +38,7 @@ const Notice = styled.View`
 `;
 
 const MidCategory = styled.View`
-  margin-top: 10%;
+  margin-top: 6%;
   padding-left: 8%;
   width: 37%;
   height: 10%;
@@ -86,8 +86,13 @@ const Text = styled.Text`
 export default ({ navigation }) => {
   const logOut = useLogOut();
 
+  const GetToken = async () => {
+    const token = await AsyncStorage.getItem("jwt");
+    return token;
+  };
+
   const Logout = async () => {
-    const token = "";
+    const token = GetToken;
     axios.get(`${baseUri}/logout?${token}`).catch(function (error) {
       console.log(error);
     });

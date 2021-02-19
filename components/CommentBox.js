@@ -89,7 +89,7 @@ export default (props) => {
 
     await axios
       .delete(`${baseUri}/comment/${props.commentId}`, config)
-      .then(function (response){
+      .then(function (response) {
         GetComment();
       })
       .catch(function (error) {
@@ -119,11 +119,15 @@ export default (props) => {
     <Container>
       <Header>
         <WriterBox style={{ top: 5, left: 6 }}>
-          <Writer style={{ fontSize: 15 }}>{props.name ? props.name : "null"}</Writer>
+          <Writer style={{ fontSize: 15 }}>
+            {props.name ? props.name : "null"}
+          </Writer>
         </WriterBox>
-        <Delete style={{ top: 3, right: 7 }} onPress={() => confirmAlert()}>
-          {props.isMine === true ? <Del_Text>삭제하기</Del_Text> : null}
-        </Delete>
+        {props.isMine === true ? (
+          <Delete style={{ top: 3, right: 7 }} onPress={() => confirmAlert()}>
+            <Del_Text>삭제하기</Del_Text>
+          </Delete>
+        ) : null}
       </Header>
       <Footer>
         <Content style={{ fontSize: 12 }}>{props.content}</Content>
