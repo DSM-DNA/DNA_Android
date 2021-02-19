@@ -50,7 +50,7 @@ export default ({ navigation }) => {
   };
   useEffect(() => {
     GetPost();
-  }, []);
+  }, [count]);
 
   return (
     <AllView>
@@ -80,6 +80,7 @@ export default ({ navigation }) => {
           {count === 0 && <Text>게시물이 없습니다.</Text>}
           {posts?.map((post) => (
             <PostBox
+              setCount={setCount}
               onPress={()=> navigation.navigate("Comments", post)}
               key={post.timelineId}
               content={post.content}

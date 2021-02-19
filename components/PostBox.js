@@ -71,6 +71,25 @@ export default (props) => {
     return token;
   };
 
+  const GetPost = async () => {
+    const token = await GetToken();
+    const req_token = "Bearer " + token;
+
+    const config = {
+      headers: { Authorization: req_token },
+    };
+
+    await axios
+      .get(`${baseUri}/timeline/WORKER?size=30&page=0`, config)
+      .then(function (response) {
+        props.setCount(response.data.totalElements);
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert("데이터를 불러올수 없습니다.");
+      });
+  };
+
   const PostDelete = async () => {
     const token = await GetToken();
     const req_token = "Bearer " + token;
@@ -81,6 +100,9 @@ export default (props) => {
 
     await axios
       .delete(`${baseUri}/timeline/${props.timelineId}`, config)
+      .then(function (response){
+        GetPost();
+      })
       .catch(function (error) {
         console.log(error);
         Alert.alert("게시물을 삭제할 수 없습니다.");
