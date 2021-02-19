@@ -11,9 +11,9 @@ const Box = styled.View`
   width: 100%;
   align-items: center;
   background-color: white;
-  `;
-  
-  const Component = styled.TouchableOpacity`
+`;
+
+const Component = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;
   width: 93.6%;
@@ -114,25 +114,25 @@ export default (props) => {
   };
 
   return (
-        <Component>
-          <Header>
-            <Name_Title style={{ fontSize: 20 }}>{props.name}</Name_Title>
-            <Date_Text
-              style={{ fontSize: 15 }}
-            >{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
-            <Day style={{ fontSize: 20 }}>{`${
-              date.getDay() < 10 ? "0" + date.getDay() : date.getDay()
-            }일`}</Day>
-          </Header>
-          <Bottom>
-            <Name_Title style={{ fontSize: 20 }}>{props.title}</Name_Title>
-            <Date_Text>{props.content}</Date_Text>
-          </Bottom>
-          {props.isMine === true ? (
-            <Delete onPress={() => confirmAlert()}>
-              <Del_Text style={{ fontSize: 10 }}>삭제하기</Del_Text>
-            </Delete>
-          ) : null}
-        </Component>
+    <Component onPress={props.onPress}>
+      <Header>
+        <Name_Title style={{ fontSize: 20 }}>{props.name}</Name_Title>
+        <Date_Text
+          style={{ fontSize: 15 }}
+        >{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
+        <Day style={{ fontSize: 20 }}>{`${
+          date.getDay() < 10 ? "0" + date.getDay() : date.getDay()
+        }일`}</Day>
+      </Header>
+      <Bottom>
+        <Name_Title style={{ fontSize: 20 }}>{props.title}</Name_Title>
+        <Date_Text>{props.content}</Date_Text>
+      </Bottom>
+      {props.isMine === true ? (
+        <Delete onPress={() => confirmAlert()}>
+          <Del_Text style={{ fontSize: 10 }}>삭제하기</Del_Text>
+        </Delete>
+      ) : null}
+    </Component>
   );
 };

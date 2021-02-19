@@ -78,6 +78,7 @@ export default ({ navigation }) => {
         >
           {posts?.map((post) => (
             <PostBox
+              onPress={()=> navigation.navigate("Comments", post)}
               key={post.timelineId}
               content={post.content}
               createdAt={post.createdAt}
