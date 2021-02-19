@@ -27,7 +27,7 @@ const AllView = styled.View`
 `;
 
 const Comment = styled.TextInput`
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 90%;
   height: 100%;
   padding-left: 8px;
@@ -36,7 +36,7 @@ const Comment = styled.TextInput`
 `;
 
 const Submit = styled.TouchableOpacity`
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   height: 100%;
   width: 10%;
   position: absolute;
@@ -76,10 +76,38 @@ export default ({ route }) => {
         Alert.alert("데이터를 불러올수 없습니다.");
       });
   };
+
+  const CreateComment = async () => {
+    const token = await GetToken();
+    const req_token = "Bearer " + token;
+    const { value } = commentInput;
+    const config = {
+      headers: { Authorization: req_token },
+    };
+
+    await axios
+      .post(
+        `${baseUri}/comment`,
+        {
+          timelineId: post.timelineId,
+          content: value,
+        },
+        config
+      )
+      .then(function (response){
+        GetComment();
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert("댓글 작성에 실패했습니다.");
+      });
+  };
+
   useEffect(() => {
-    console.log(post);
+    //console.log(post);
+    console.log("post 조회");
     GetComment();
-  }, []);
+  }, [count]);
 
   return (
     <AllView>
@@ -139,15 +167,17 @@ export default ({ route }) => {
         }}
         pullHeight={60}
       >
-        <ScrollView contentContainerStyle={{alignItems: "center"}}>
-            {count === 0 && <Text>댓글이 없습니다.</Text>}
-            {count !== 0 && comments && comments.map((comment) => (
-                <CommentBox
-                    key={comment.commentId}
-                    commentId={comment.commentId}
-                    content={comment.content}
-                    isMine={comment.isMine}
-                />
+        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+          {count === 0 && <Text>댓글이 없습니다.</Text>}
+          {count !== 0 &&
+            comments &&
+            comments.map((comment) => (
+              <CommentBox
+                key={comment.commentId}
+                commentId={comment.commentId}
+                content={comment.content}
+                isMine={comment.isMine}
+              />
             ))}
         </ScrollView>
       </PTRView>
@@ -155,18 +185,19 @@ export default ({ route }) => {
         style={{ width: "100%", height: "10%", alignItems: "space-between" }}
       >
         <Comment
+          post={post}
           fontSize={20}
           placeholder="댓글 입력"
           autoCorrect={false}
           {...commentInput}
           multiline={true}
         />
-        <Submit>
-            <MaterialCommunityIcons
-              name="comment-arrow-right-outline"
-              color={"#111111"}
-              size={30}
-            />
+        <Submit onPress={() => CreateComment()}>
+          <MaterialCommunityIcons
+            name="comment-arrow-right-outline"
+            color={"#111111"}
+            size={30}
+          />
         </Submit>
       </View>
     </AllView>

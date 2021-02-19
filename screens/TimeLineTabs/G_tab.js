@@ -77,7 +77,7 @@ export default ({ navigation }) => {
             alignItems: "center",
           }}
         >
-          {count === 1 && <Text>게시물이 없습니다.</Text>}
+          {count === 0 && <Text>게시물이 없습니다.</Text>}
           {posts?.map((post) => (
             <PostBox
               onPress={()=> navigation.navigate("Comments", post)}
