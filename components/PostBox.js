@@ -6,13 +6,6 @@ import styled from "styled-components";
 
 const baseUri = "http://121.66.14.43:9191";
 
-const Box = styled.View`
-  flex: 1;
-  width: 100%;
-  align-items: center;
-  background-color: white;
-`;
-
 const Component = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;

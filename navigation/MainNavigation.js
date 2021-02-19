@@ -23,7 +23,7 @@ const HomeTabs = () => {
       <Stack.Screen name="T_tab" component={T_tab} />
       <Stack.Screen name="G_tab" component={G_tab} />
       <Stack.Screen name="C_tab" component={C_tab} />
-      <Stack.Screen name="Comments" component={Comments} />
+      <Stack.Screen name="Comments" component={Comments}/>
     </Stack.Navigator>
   );
 };
@@ -39,6 +39,7 @@ export default () => (
           backgroundColor: "#f5f5f5", //기본 배경색
         },
         labelPosition: "below-icon",
+        keyboardHidesTabBar: true
       }}
     >
       <Tab.Screen
