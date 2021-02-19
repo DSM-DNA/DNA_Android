@@ -180,6 +180,7 @@ export default ({ route }) => {
                 commentId={comment.commentId}
                 content={comment.content}
                 isMine={comment.isMine}
+                name={comment.name}
               />
             ))}
         </ScrollView>
