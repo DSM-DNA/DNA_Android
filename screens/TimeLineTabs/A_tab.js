@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Alert, ScrollView } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
 import AHeader from "../../assets/Header/AHeader";
@@ -20,7 +21,7 @@ const AllView = styled.View`
   height: 100%;
 `;
 
-export default () => {
+export default ({ navigation }) => {
   const [posts, setPosts] = useState(null);
 
   const GetToken = async () => {
@@ -61,32 +62,33 @@ export default () => {
       >
         <AHeader />
       </View>
-      <View style={{ width: "100%", height: "87%", alignItems: "center" }}>
-        <PTRView
-          style={{
+      <PTRView
+        style={{backgroundColor:"white"}}
+        onRefresh={() => {
+          GetPost();
+        }}
+        pullHeight={100}
+      >
+        <ScrollView
+          contentContainerStyle={{
             width: "100%",
             height: "87%",
+            alignItems: "center",
           }}
-          onRefresh={() => {
-            GetPost();
-          }}
-          pullHeight={100}
         >
-          <ScrollView>
-            {posts?.map((post) => (
-              <PostBox
-                key={post.timelineId}
-                content={post.content}
-                createdAt={post.createdAt}
-                isMine={post.isMine}
-                name={post.name}
-                timelineId={post.timelineId}
-                title={post.title}
-              />
-            ))}
-          </ScrollView>
-        </PTRView>
-      </View>
+          {posts?.map((post) => (
+            <PostBox
+              key={post.timelineId}
+              content={post.content}
+              createdAt={post.createdAt}
+              isMine={post.isMine}
+              name={post.name}
+              timelineId={post.timelineId}
+              title={post.title}
+            />
+          ))}
+        </ScrollView>
+      </PTRView>
     </AllView>
   );
 };

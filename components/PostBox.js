@@ -9,17 +9,17 @@ const baseUri = "http://121.66.14.43:9191";
 const Box = styled.View`
   flex: 1;
   width: 100%;
-  height: 130px;
-  margin-top: 2%;
-  margin-bottom: 3%;
   align-items: center;
   background-color: white;
-`;
-
-const Component = styled.View`
+  `;
+  
+  const Component = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;
   width: 93.6%;
+  height: 130px;
+  margin-top: 2%;
+  margin-bottom: 3%;
   height: 130px;
   border-radius: 10px;
   background-color: white;
@@ -114,27 +114,25 @@ export default (props) => {
   };
 
   return (
-    <Box>
-      <Component>
-        <Header>
-          <Name_Title style={{ fontSize: 20 }}>{props.name}</Name_Title>
-          <Date_Text
-            style={{ fontSize: 15 }}
-          >{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
-          <Day style={{ fontSize: 20 }}>{`${
-            date.getDay() < 10 ? "0" + date.getDay() : date.getDay()
-          }일`}</Day>
-        </Header>
-        <Bottom>
-          <Name_Title style={{ fontSize: 20 }}>{props.title}</Name_Title>
-          <Date_Text>{props.content}</Date_Text>
-        </Bottom>
-        {props.isMine === true ? (
-          <Delete onPress={() => confirmAlert()}>
-            <Del_Text style={{ fontSize: 10 }}>삭제하기</Del_Text>
-          </Delete>
-        ) : null}
-      </Component>
-    </Box>
+        <Component>
+          <Header>
+            <Name_Title style={{ fontSize: 20 }}>{props.name}</Name_Title>
+            <Date_Text
+              style={{ fontSize: 15 }}
+            >{`${date.getFullYear()}년 ${date.getMonth()}월`}</Date_Text>
+            <Day style={{ fontSize: 20 }}>{`${
+              date.getDay() < 10 ? "0" + date.getDay() : date.getDay()
+            }일`}</Day>
+          </Header>
+          <Bottom>
+            <Name_Title style={{ fontSize: 20 }}>{props.title}</Name_Title>
+            <Date_Text>{props.content}</Date_Text>
+          </Bottom>
+          {props.isMine === true ? (
+            <Delete onPress={() => confirmAlert()}>
+              <Del_Text style={{ fontSize: 10 }}>삭제하기</Del_Text>
+            </Delete>
+          ) : null}
+        </Component>
   );
 };

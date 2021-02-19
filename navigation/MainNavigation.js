@@ -10,6 +10,7 @@ import A_tab from "../screens/TimeLineTabs/A_tab";
 import T_tab from "../screens/TimeLineTabs/T_tab";
 import G_tab from "../screens/TimeLineTabs/G_tab";
 import C_tab from "../screens/TimeLineTabs/C_tab";
+import Comments from "../screens/Comments";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ const HomeTabs = () => {
       <Stack.Screen name="T_tab" component={T_tab} />
       <Stack.Screen name="G_tab" component={G_tab} />
       <Stack.Screen name="C_tab" component={C_tab} />
+      <Stack.Screen name="Comments" component={Comments} />
     </Stack.Navigator>
   );
 };
