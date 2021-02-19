@@ -69,7 +69,7 @@ export default () => {
           <LogoutBack />
         </Image>
       </View>
-      <View style={{ width: "100%", height: "40%", backgroundColor: "white" }}>
+      <View style={{ width: "100%", height: "38%", backgroundColor: "white" }}>
         <Touchable onPress={() => Logout}>
           <Container>
             <_Container>
@@ -78,6 +78,7 @@ export default () => {
           </Container>
         </Touchable>
       </View>
+      <Text style={{fontSize:11, color:"grey"}}>Beta 1.0</Text>
     </View>
   );
 };
