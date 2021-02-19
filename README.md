@@ -13,8 +13,9 @@
 - [X] Main
 - [X] Write Post
 - [X] Delete Post
-- [ ] Comments
-- [ ] Write Comments
-- [ ] Delete Comments
-- [x] TabBarSetting
-- [x] SetNavigation
+- [X] Comments
+- [X] Write Comments
+- [X] Delete Comments
+- [X] TabBarSetting
+- [X] SetNavigation
+- [X] Auto Refresh
