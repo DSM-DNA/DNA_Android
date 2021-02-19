@@ -20,8 +20,9 @@ const AllView = styled.View`
   height: 100%;
 `;
 
-export default () => {
+export default ({ navigation }) => {
   const [posts, setPosts] = useState(null);
+  const [count, setCount] = useState(0);
 
   const GetToken = async () => {
     const token = await AsyncStorage.getItem("jwt");
@@ -40,6 +41,7 @@ export default () => {
       .get(`${baseUri}/timeline/BUYER?size=30&page=0`, config)
       .then(function (response) {
         setPosts(response.data.timelineResponses);
+        setCount(response.data.totalElements);
       })
       .catch(function (error) {
         console.log(error);
@@ -61,32 +63,35 @@ export default () => {
       >
         <THeader />
       </View>
-      <View style={{ width: "100%", height: "87%", alignItems: "center" }}>
-        <PTRView
-          style={{
+      <PTRView
+        style={{backgroundColor:"white"}}
+        onRefresh={() => {
+          GetPost();
+        }}
+        pullHeight={100}
+      >
+        <ScrollView
+          contentContainerStyle={{
             width: "100%",
             height: "87%",
+            alignItems: "center",
           }}
-          onRefresh={() => {
-            GetPost();
-          }}
-          pullHeight={100}
         >
-          <ScrollView>
-            {posts?.map((post) => (
-              <PostBox
-                key={post.timelineId}
-                content={post.content}
-                createdAt={post.createdAt}
-                isMine={post.isMine}
-                name={post.name}
-                timelineId={post.timelineId}
-                title={post.title}
-              />
-            ))}
-          </ScrollView>
-        </PTRView>
-      </View>
+          {count === 1 && <Text>게시물이 없습니다.</Text>}
+          {posts?.map((post) => (
+            <PostBox
+              onPress={()=> navigation.navigate("Comments", post)}
+              key={post.timelineId}
+              content={post.content}
+              createdAt={post.createdAt}
+              isMine={post.isMine}
+              name={post.name}
+              timelineId={post.timelineId}
+              title={post.title}
+            />
+          ))}
+        </ScrollView>
+      </PTRView>
     </AllView>
   );
 };
