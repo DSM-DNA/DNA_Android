@@ -92,6 +92,9 @@ export default ({ navigation }) => {
     const token = await GetToken();
     const req_token = "Bearer " + token;
 
+    titleInput.onChangeText("");
+    textInput.onChangeText("");
+
     const config = {
       headers: { Authorization: req_token },
     };

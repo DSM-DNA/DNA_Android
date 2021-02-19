@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Alert, ScrollView, Text } from "react-native";
+import { Alert, Keyboard, ScrollView, Text } from "react-native";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
@@ -69,7 +69,6 @@ export default ({ route }) => {
       .then(function (response) {
         setComments(response.data.commentResponses);
         setCount(response.data.totalElements);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -81,6 +80,10 @@ export default ({ route }) => {
     const token = await GetToken();
     const req_token = "Bearer " + token;
     const { value } = commentInput;
+
+    commentInput.onChangeText("");
+    Keyboard.dismiss();
+
     const config = {
       headers: { Authorization: req_token },
     };
@@ -104,8 +107,6 @@ export default ({ route }) => {
   };
 
   useEffect(() => {
-    //console.log(post);
-    console.log("post 조회");
     GetComment();
   }, [count]);
 
@@ -173,6 +174,8 @@ export default ({ route }) => {
             comments &&
             comments.map((comment) => (
               <CommentBox
+                postId={post.timelineId}
+                setState={setCount}
                 key={comment.commentId}
                 commentId={comment.commentId}
                 content={comment.content}

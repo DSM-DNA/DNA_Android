@@ -64,7 +64,6 @@ const Day = styled.Text`
 `;
 
 export default (props) => {
-  console.log(props);
   const date = new Date(props.createdAt);
 
   const GetToken = async () => {

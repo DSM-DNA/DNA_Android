@@ -60,6 +60,25 @@ export default (props) => {
     return token;
   };
 
+  const GetComment = async () => {
+    const token = await GetToken();
+    const req_token = "Bearer " + token;
+
+    const config = {
+      headers: { Authorization: req_token },
+    };
+
+    await axios
+      .get(`${baseUri}/comment/${props.postId}?size=30&page=0`, config)
+      .then(function (response) {
+        props.setState(response.data.totalElements);
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert("데이터를 불러올수 없습니다.");
+      });
+  };
+
   const Del_comment = async () => {
     const token = await GetToken();
     const req_token = "Bearer " + token;
@@ -70,6 +89,9 @@ export default (props) => {
 
     await axios
       .delete(`${baseUri}/comment/${props.commentId}`, config)
+      .then(function (response){
+        GetComment();
+      })
       .catch(function (error) {
         console.log(error);
         Alert.alert("댓글을 삭제할 수 없습니다.");
