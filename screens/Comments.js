@@ -12,6 +12,7 @@ import GHeader from "../assets/Header/GHeader";
 import CHeader from "../assets/Header/CHeader";
 import PostBox from "../components/PostBox";
 import useInput from "../hooks/useInput";
+import CommentBox from "../components/CommentBox";
 
 const baseUri = "http://121.66.14.43:9191";
 
@@ -25,20 +26,20 @@ const AllView = styled.View`
 `;
 
 const Comment = styled.TextInput`
-    background-color: green;
-    width: 90%;
-    height: 100%;
-    padding-left: 8px;
-    position: absolute;
-    left: 0;
+  background-color: grey;
+  width: 90%;
+  height: 100%;
+  padding-left: 8px;
+  position: absolute;
+  left: 0;
 `;
 
 const Submit = styled.View`
-    background-color: orange;
-    height: 100%;
-    width: 10%;
-    position: absolute;
-    right: 0;
+  background-color: grey;
+  height: 100%;
+  width: 10%;
+  position: absolute;
+  right: 0;
 `;
 
 export default ({ route }) => {
@@ -89,10 +90,10 @@ export default ({ route }) => {
         {post.type === "DIVE" && <GHeader />}
         {post.type === "COMMON" && <CHeader />}
       </View>
-      <View style={{height: 130, width: "100%", backgroundColor: "yellow"}}>
+      <View style={{ height: 130, width: "100%", backgroundColor: "yellow" }}>
         <View
           style={{
-            backgroundColor: "red",
+            backgroundColor: "white",
             width: "100%",
             height: 130,
             alignItems: "center",
@@ -109,26 +110,45 @@ export default ({ route }) => {
           />
         </View>
       </View>
-      <View style={{backgroundColor:"#3B6978", width: "100%", height: 30, justifyContent: "center", alignItems: "center" }}>
-          <Text style={{color: "white", fontSize: 15}}>댓글</Text>
+      <View style={{ width: "100%", height: "5%" }}>
+        <View
+          style={{
+            backgroundColor: "#3B6978",
+            width: "100%",
+            height: 30,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 15 }}>댓글</Text>
+        </View>
       </View>
       <PTRView
         style={{
           width: "100%",
           height: "87%",
-          backgroundColor:"pink"
+          backgroundColor: "white",
         }}
         onRefresh={() => {
           GetComment();
         }}
         pullHeight={60}
       >
-        <ScrollView></ScrollView>
+        <ScrollView>
+          <CommentBox />
+        </ScrollView>
       </PTRView>
-      <View style={{ width: "100%", height: "5%", alignItems: "space-between"}}>
-        <Comment fontSize={20} placeholder="댓글 입력" autoCorrect={false} {...commentInput}></Comment>
-        
-        <Submit/>
+      <View
+        style={{ width: "100%", height: "5%", alignItems: "space-between" }}
+      >
+        <Comment
+          fontSize={20}
+          placeholder="댓글 입력"
+          autoCorrect={false}
+          {...commentInput}
+        ></Comment>
+
+        <Submit />
       </View>
     </AllView>
   );
