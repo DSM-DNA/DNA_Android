@@ -64,7 +64,10 @@ export default ({ route }) => {
       .get(`${baseUri}/comment/${post.timelineId}?size=30&page=0`, config)
       .then(function (response) {
         setComments(response.data.commentResponses);
-        console.log(comments);
+        console.log(response.data);
+        if(response.data.totalElements === 0){
+            Alert.alert("댓글이 없습니다.");
+        }
       })
       .catch(function (error) {
         console.log(error);

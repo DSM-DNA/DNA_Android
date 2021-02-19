@@ -34,14 +34,10 @@ const Delete = styled.TouchableOpacity`
   height: 15px;
   width: 61px;
   position: absolute;
-  top: 3;
-  right: 7;
 `;
 
 const WriterBox = styled.View`
     height: 20px;
-    top: 5;
-    left: 6;
 `;
 
 const Writer = styled.Text`
@@ -61,10 +57,10 @@ export default () => {
     return (
         <Container>
             <Header>
-                <WriterBox>
+                <WriterBox style={{top: 5, left: 6}}>
                     <Writer style={{fontSize: 15}}>김해교</Writer>
                 </WriterBox>
-                <Delete>
+                <Delete style={{top: 3, right: 7}}>
                     <Del_Text>삭제하기</Del_Text>
                 </Delete>
             </Header>
@@ -76,19 +72,3 @@ export default () => {
         </Container>
     );
 };
-/*
-
-const View = styled.View`
-  flex:1;
-  width: 100%;
-  height: 50px;
-  background-color: red;
-`;
-
-export default () => {
-  return (
-    <>
-    </>
-  );
-}
-*/
