@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Alert, ScrollView } from "react-native";
+import { Alert, ScrollView, Text } from "react-native";
 import PTRView from "react-native-pull-to-refresh";
 import styled from "styled-components";
 import GHeader from "../../assets/Header/GHeader";
