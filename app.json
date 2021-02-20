@@ -1,16 +1,33 @@
 {
   "expo": {
     "name": "DNA",
-    "icon": "./assets/appicon.png",
-    "splash": "./assets/appicon.png",
-    "version": "1.0.0",
     "slug": "DNA",
-    "android": {
-      "package": "com.busanpanda.DNA",
-      "versionCode": 1
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/appicon.png",
+    "splash": {
+      "image": "./assets/appicon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "bundleIdentifier": "com.busanpanda.DNA"
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appicon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.busanpanda.DNA"
+    },
+    "web": {
+      "favicon": "./assets/appicon.png"
     }
   }
 }
