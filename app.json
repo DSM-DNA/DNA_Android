@@ -1,12 +1,16 @@
 {
   "expo": {
-   "name": "DNA",
-   "icon": "./assets/appicon.png",
-   "version": "1.0.0",
-   "slug": "DNA",
-   "android": {
-     "package": "com.busanpanda.DNA",
-     "versionCode": 1
-   }
+    "name": "DNA",
+    "icon": "./assets/appicon.png",
+    "splash": "./assets/appicon.png",
+    "version": "1.0.0",
+    "slug": "DNA",
+    "android": {
+      "package": "com.busanpanda.DNA",
+      "versionCode": 1
+    },
+    "ios": {
+      "bundleIdentifier": "com.busanpanda.DNA"
+    }
   }
 }
