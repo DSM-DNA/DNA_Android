@@ -1,5 +1,8 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { SvgXml } from "react-native-svg";
+import * as Font from 'expo-font';
 
 const xml = `
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="502" height="423" viewBox="0 0 502 423">
@@ -47,4 +50,29 @@ const xml = `
   </svg> 
 `;
 
-export default () => <SvgXml xml={xml} width="100%" height="100%" />;
+export default () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const loadFonts = async() => {
+    await Font.loadAsync({
+      // Load a font `NanumGothic-Bold` from a static resource
+      NanumGothic: require('../fonts/NanumGothic.ttf'),
+      'NanumGothicBold': {
+        uri: require('../fonts/NaumGothic-Bold.ttf'),
+        display: Font.FontDisplay.FALLBACK,
+      },
+    });
+    setFontsLoaded(true);
+  }
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
+
+  if(fontsLoaded){
+    return (
+      <SvgXml xml={xml} width="100%" height="100%" />
+    );
+  } else {
+    return null;
+  }
+};
