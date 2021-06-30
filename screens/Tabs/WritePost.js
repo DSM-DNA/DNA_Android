@@ -10,8 +10,9 @@ import useInput from "../../hooks/useInput";
 import axios from "axios";
 import { Alert, Keyboard } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+import { BaseURL } from '../../env';
 
-const baseUri = "http://121.66.14.43:9191";
+const baseUri = BaseURL;
 
 const Container = styled.View`
    flex: 1;

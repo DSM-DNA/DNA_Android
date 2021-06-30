@@ -14,8 +14,9 @@ import CHeader from "../assets/Header/CHeader";
 import PostBox from "../components/PostBox";
 import useInput from "../hooks/useInput";
 import CommentBox from "../components/CommentBox";
+import { BaseURL } from '../env';
 
-const baseUri = "http://121.66.14.43:9191";
+const baseUri = BaseURL;
 
 const View = styled.View`
    background-color: white;

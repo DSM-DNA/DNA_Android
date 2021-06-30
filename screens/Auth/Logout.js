@@ -2,6 +2,9 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
 import LogoutBack from "../../assets/images/LogoutBack";
+import { BaseURL } from '../../env';
+
+const baseUri = BaseURL;
 
 const Image = styled.View`
    width: 68%;

@@ -6,8 +6,9 @@ import AuthBackground from "../../assets/images/AuthBackground";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
+import { BaseURL } from '../../env';
 
-const baseUri = "http://121.66.14.43:9191";
+const baseUri = BaseURL;
 
 const TestContainer = styled.View`
    flex: 1;

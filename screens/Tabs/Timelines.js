@@ -11,8 +11,9 @@ import axios from "axios";
  import Thymine from "../../assets/images/Thymine";
  import { useLogOut } from "../../AuthContext";
  import { Alert } from "react-native";
+import { BaseURL } from '../../env';
 
- const baseUri = "http://121.66.14.43:9191";
+ const baseUri = BaseURL;
 
  const green = "#CAE8D5";
  const white = "#ffffff";
