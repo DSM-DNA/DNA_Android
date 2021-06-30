@@ -33,11 +33,8 @@ export default () => {
   const loadFonts = async() => {
     await Font.loadAsync({
       // Load a font `NanumGothic-Regular` from a static resource
-      NanumGothic: require('../fonts/NanumGothic-Regular.ttf'),
-      'NanumGothicExtraBold': {
-        uri: require('../fonts/NanumGothic-ExtraBold.ttf'),
-        display: Font.FontDisplay.FALLBACK,
-      },
+      'NanumGothic': require('../fonts/NanumGothic-Regular.ttf'),
+      'NanumGothicExtraBold': require('../fonts/NanumGothic-ExtraBold.ttf'),
     });
     setFontsLoaded(true);
   }
